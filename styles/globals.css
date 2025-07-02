@@ -1,3 +1,15 @@
 @import "tailwindcss";
 
 
+@font-face {
+  font-family: 'Jack';
+    src: url('/assets/fonts/Jack in the Box.ttf') format('truetype');
+     font-weight: normal;
+    font-style: normal;
+}
+
+.font-menu {
+    font-family:'Jack' ;
+}
+
+
