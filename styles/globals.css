@@ -1,6 +1,75 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Old London';
+  src: url('/assets/fonts/OldLondon.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
+@font-face {
+  font-family: 'Animeace';
+  src: url('/assets/fonts/animeace2_ital.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Edu';
+  src: url('/assets/fonts/LoveYaLikeASisterSolid.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Comic Book';
+  src: url('/assets/fonts/Comic Book.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Some Time Later';
+  src: url('/assets/fonts/KGInimitableOriginal.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
+
+@font-face {
+  font-family: 'Jack';
+  src: url('/assets/fonts/Jack in the Box.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.h1-description{
+  font-family: 'Jack'
+}
+
+
+.h1-inicio{
+  font-family:  'Some Time Later' ;
+}
+
+.h1-edu{
+  font-family:  'Edu' ;
+}
+
+.h1-gotico {
+  font-family: 'Old London', serif;
+}
+
+.h1-funny{
+    font-family: 'Comic Book', serif;
+    
+}
+
+.p-funny{
+ font-family: 'Animeace', serif;
+}
 @font-face {
   font-family: 'Jack';
     src: url('/assets/fonts/Jack in the Box.ttf') format('truetype');
