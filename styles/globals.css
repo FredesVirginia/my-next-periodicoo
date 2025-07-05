@@ -50,6 +50,18 @@
 }
 
 
+@font-face {
+  font-family: 'Workfla';
+  src: url('/assets/fonts/Worktalk.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.x-description{
+  font-family: 'Workfla'
+}
+
+
 .h1-inicio{
   font-family:  'Some Time Later' ;
 }
