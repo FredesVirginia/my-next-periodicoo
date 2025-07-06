@@ -1,6 +1,8 @@
 export interface IReqCreateBlog {
     autor:     string;
     resumen:   string;
+    imagen1 : string;
+    imagen2 : string;
     secciones: Seccione[];
     titulos:   Titulo[];
 }
