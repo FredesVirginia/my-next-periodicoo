@@ -1,7 +1,35 @@
 import { Circulo, CruzChica, CruzGrande, Fondo, Mas } from "@/components/formas/formas";
+import { IReqCreateBlog } from "@/hooks/createBlog/IReqCreateBlog";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useState } from "react";
 import * as Yup from "yup";
+
+
+type FormValues = {
+  titulo: string;
+  resumen : string;
+  subtitulo1: string;
+  texto1: string;
+  subtitulo2: string;
+  texto2: string;
+  subtitulo3: string;
+  texto3: string;
+  subtitulo4: string;
+  texto4: string;
+};
+
+type Array1 = {
+  contenido : string
+}
+
+type Array2 = {
+  texto : string , 
+  nivel : number,
+  seccionIndex : number | null
+}
 export default function CreateFirtPlantilla() {
+  const [formData , setFormData] = useState<FormValues>();
+  const [data , setData] = useState<IReqCreateBlog>()
   const validationSchema = Yup.object({
     titulo: Yup.string().required("Campo requerido"),
     subtitulo1: Yup.string().required("Este campo es obligatorio"),
@@ -13,6 +41,21 @@ export default function CreateFirtPlantilla() {
     subtitulo4: Yup.string().required("Este campo es obligatorio"),
     texto4: Yup.string().required("Este campo es obligatorio"),
   });
+
+  const handleClick = ()=>{
+    console.log("DATOS =====>" , formData)
+    const array1 : Array1[]= [];
+    if(formData){
+      array1.push({contenido : formData.texto1})
+       array1.push({contenido : formData.texto2})
+        array1.push({contenido : formData.texto3})
+         array1.push({contenido : formData.texto4})
+    }
+    console.log("EL ARRRRRRRRRRRRRRRRRA " , array1)
+   
+  }
+
+ 
   return (
     <div className="relative min-h-screen overflow-x-hidden">
       <Fondo />
@@ -32,6 +75,7 @@ export default function CreateFirtPlantilla() {
             <Formik
               initialValues={{
                 titulo: "",
+                resumen: "",
                 subtitulo1: "",
                 texto1: "",
                 subtitulo2: "",
@@ -44,8 +88,10 @@ export default function CreateFirtPlantilla() {
               validationSchema={validationSchema}
               validateOnMount={true} // Importante para que el botón esté deshabilitado al inicio
               onSubmit={(values, { resetForm }) => {
-                alert(JSON.stringify(values, null, 2));
+               
                 resetForm();
+                setFormData(values)
+                 handleClick()
               }}
             >
               {({ errors, touched, isValid, dirty, isSubmitting }) => (
@@ -63,6 +109,20 @@ export default function CreateFirtPlantilla() {
                       placeholder="Ingrese el título"
                     />
                     {touched.titulo && errors.titulo && <p className="text-red-500 text-sm mt-2">{errors.titulo}</p>}
+                  </div>
+
+                   <div className="bg-gray-100 rounded-xl">
+                    <Field
+                      as="textarea"
+                      id="Resumen"
+                      name="resumen"
+                      rows={2}
+                      className={`w-full px-4 py-3 bordr rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 transition ${
+                        touched.resumen && errors.resumen ? "border-red-500 focus:ring-red-400" : "border-gray-300"
+                      }`}
+                      placeholder="Ingrese el Resumen"
+                    />
+                    {touched.resumen && errors.resumen && <p className="text-red-500 text-sm mt-2">{errors.resumen}</p>}
                   </div>
 
                   {/* Sección 1 */}
