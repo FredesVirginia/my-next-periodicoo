@@ -35,7 +35,7 @@ type Array2 = {
 };
 export default function CreateFirtPlantilla() {
   const [formData, setFormData] = useState<FormValues>();
-  const [data, setData] = useState<IReqCreateBlog>();
+
   const { mutationCreateBlog } = useHookCreatedBlog();
   const validationSchema = Yup.object({
     titulo: Yup.string().required("Campo requerido"),

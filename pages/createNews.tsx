@@ -7,24 +7,23 @@ import { useRouter } from "next/router";
 import { DotLoader } from "react-spinners";
 
 export default function createNews() {
-    const router = useRouter();
-    const [loading , setLoing] = useState(false);
+  const router = useRouter();
+  const [loading, setLoing] = useState(false);
 
-    const handleClick = (type : string)=>{
-      setLoing(true);
-      setTimeout(()=>{
-        router.push(`//createBlog/${type}`)
-      }, 900)
-    }
+  const handleClick = (type: string) => {
+    setLoing(true);
+    setTimeout(() => {
+      router.push(`//createBlog/${type}`);
+    }, 900);
+  };
 
-    if(loading){
-      return (
-          <div className="fixed inset-0  flex justify-center items-center py-5">
-  <DotLoader color="#ca5d36" />
-</div>
-
-      )
-    }
+  if (loading) {
+    return (
+      <div className="fixed inset-0  flex justify-center items-center py-5">
+        <DotLoader color="#ca5d36" />
+      </div>
+    );
+  }
   return (
     <div className="bg-red-400 py-10">
       <div className="flex  flex-col justify-center items-center">
@@ -35,8 +34,10 @@ export default function createNews() {
       </div>
 
       <div className="h-96 flex gap-5  my-10  py-5 justify-center items-center ">
-       
-        <div className="relative py-5 rounded-2xl bg-white w-86 h-full "    onClick={() => handleClick("FIRTS")}>
+        <div
+          className="relative py-5 rounded-2xl bg-white w-86 h-full "
+          onClick={() => handleClick("FIRTS")}
+        >
           <Image
             src={plantilla2}
             alt="Fondo1"
@@ -45,9 +46,11 @@ export default function createNews() {
             priority
           />
         </div>
-        
 
-          <div className="relative w-86 h-full py-5 rounded-2xl bg-white"   onClick={() => handleClick("SECOND")}>
+        <div
+          className="relative w-86 h-full py-5 rounded-2xl bg-white"
+          onClick={() => handleClick("SECOND")}
+        >
           <Image
             src={plantilla1}
             alt="Fondo1"
@@ -57,7 +60,6 @@ export default function createNews() {
           />
         </div>
       </div>
-     
     </div>
   );
 }
