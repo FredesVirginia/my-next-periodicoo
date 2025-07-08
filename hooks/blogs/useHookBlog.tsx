@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query"
-import { getBlogs } from "./request"
+import { getBlog, getBlogs } from "./request"
 import { useEffect, useState } from "react"
-import { IResBlog } from "./IResBlog"
+import { IResBlog, IResBlogID } from "./IResBlog"
 
 
 export const useBlog= ()=>{
@@ -14,6 +14,25 @@ export const useBlog= ()=>{
     useEffect(()=>{
         if(response && response.data && response.data.length > 0){
             setData(response.data)
+        }
+    },[response.data])
+
+    return {
+        data , 
+        response : response.data
+    }
+}
+
+export const useBlogId= (id : string)=>{
+    const [data , setData] = useState<IResBlogID>()
+    const response = useQuery({
+        queryKey : ["blog" , id],
+        queryFn : ()=> getBlog(id)
+    })
+
+    useEffect(()=>{
+        if(response && response.data){
+           setData(response.data)
         }
     },[response.data])
 
