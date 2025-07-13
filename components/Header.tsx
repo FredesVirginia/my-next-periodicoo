@@ -25,20 +25,20 @@ export default function Header() {
     >
       <motion.h1
         variants={itemVariants}
-        className="h1-blog text-8xl"
+        className="h1-blog text-8xl text-white"
       >
         Bolas de algodon
       </motion.h1>
       <motion.p
         variants={itemVariants}
-        className="text-gray-400"
+        className="text-gray-400 text-white"
       >
         MULTIPUPOSE MAGACZIINE AND BLOG THEME
       </motion.p>
 
       <motion.div
         variants={itemVariants}
-        className="border-y-2 mt-5 font-bold flex border-gray-300 justify-center gap-30 py-10 w-full max-w-4xl"
+        className="border-y-2 mt-5 font-bold flex text-white border-gray-300 justify-center gap-30 py-10 w-full max-w-4xl"
       >
         <p  className="cursor-pointer hover:text-blue-500 transition-colors">INICIO</p>
         <p className="cursor-pointer hover:text-blue-500 transition-colors">TEGNOLOGIA</p>
