@@ -19,7 +19,7 @@ export default function Home() {
   if (loading) {
     return (
     <div
-  style={{ width: '100%', height: '600px', position: 'relative' }}
+  style={{ width: '100%', height: '100vh', position: 'relative' }}
   className="opacity-0 transition-opacity duration-1000 ease-out"
   onAnimationEnd={(e) => {
     e.currentTarget.classList.remove('opacity-0');

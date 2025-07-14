@@ -87,7 +87,7 @@ export default function index() {
 
         <div>
           <div className="max-w-7xl mx-auto p-6">
-            <h2 className="text-3xl font-bold mb-8 text-center">Artículos</h2>
+            <h2 className="text-3xl font-bold mb-8 text-center text-white">Artículos</h2>
             <div className="max-w-7xl mx-auto p-6">
               {!data ? (
                 <div className="flex justify-center items-center h-64">
@@ -105,7 +105,7 @@ export default function index() {
                   variants={containerVariants}
                 >
                   {data.map((article, index) => {
-                    const tituloNivel1 = article.titulos.find((t) => t.nivel === 1)?.texto || "Sin título";
+                   
 
                     return (
                       <motion.div
@@ -118,7 +118,7 @@ export default function index() {
                         <div className="relative h-48 w-full">
                           <Image
                             src={article.imagen1}
-                            alt={`Imagen de ${tituloNivel1}`}
+                            alt={`Imagen `}
                             fill
                             style={{ objectFit: "cover" }}
                             className="rounded-t-lg"
@@ -126,7 +126,7 @@ export default function index() {
                           />
                         </div>
                         <div className="p-4">
-                          <h3 className="text-xl font-semibold mb-2 text-gray-800">{tituloNivel1}</h3>
+                          <h3 className="text-xl font-semibold mb-2 text-gray-800">{article.titulo}</h3>
                           <p className="text-gray-600 mb-4">{article.resumen}</p>
                           <p className="text-sm text-gray-500 italic">Autor: {article.autor}</p>
                         </div>

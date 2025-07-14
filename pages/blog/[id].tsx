@@ -37,7 +37,6 @@ export default function BlogDetalle() {
     return <p className="text-center mt-20">Cargando artículo...</p>;
   }
 
-  const tituloNivel1 = data.titulos.find((t) => t.nivel === 1)?.texto || "Sin título";
 
   return (
     <div>
@@ -45,15 +44,7 @@ export default function BlogDetalle() {
 
      
 
-      
-       { data.category === ICategoryBlog.PLANTILLA_1 ? (   <FirstPlantilla  primerTitulo={dataBlog?.primerTitulo!} imagen1={dataBlog?.imagen1!} imagen2={dataBlog?.imagen2!} segundoSubtitulo1={dataBlog?.segundoSubtitulo1!} texto1={dataBlog?.texto2!} segundoSubtitulo2={dataBlog?.segundoSubtitulo2!} texto2={dataBlog?.texto2!} 
-    
-      segundoSubtitulo3={dataBlog?.segundoSubtitulo2!} texto3={dataBlog?.texto2!}
-      segundoSubtitulo4={dataBlog?.segundoSubtitulo2!} texto4={dataBlog?.texto2!}
-
-      
-      
-      />  ) : (<h1>sEGUNDO</h1>)}
+     
       <Footer />
     </div>
   );

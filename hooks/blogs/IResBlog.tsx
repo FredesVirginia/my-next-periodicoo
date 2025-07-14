@@ -30,46 +30,38 @@ export interface TituloNew {
     seccion: SeccionNew | null;
 }
 
-
-
-
-
-
-
-
-
-
 export interface IResBlog {
     id:               string;
     autor:            string;
+     titulo:      string;
     imagen1:          string;
     imagen2:          string;
     fechaPublicacion: Date;
     resumen:          string;
-    category:         string;
-    titulos:          Titulo[];
+    category:         ICategoryBlog;
     seccionesTexto:   SeccionesTexto[];
 }
 
 export interface SeccionesTexto {
     id:        string;
+    subtitulo: string;
+    bloques:   Bloque[];
+}
+
+export interface Bloque {
+    id:        string;
+    tipo:      string;
     contenido: string;
-    titulo:    Titulo[];
 }
 
-export interface Titulo {
-    id:    string;
-    texto: Texto;
-    nivel: number;
-}
 
-export enum Texto {
-    Inicio = "Inicio",
-    LaHistoriaDeChocolate = "La historia de Chocolate",
-    TítuloDeCuartaSeccion = "Título de cuarta seccion",
-    TítuloDeSegundaSeccion = "Título de segunda seccion",
-    TítuloDeTerceraSeccion = "Título de tercera seccion",
-}
+
+
+
+
+
+
+
 export interface IResBlogID {
     id:               string;
     autor:            string;
