@@ -12,7 +12,7 @@ export default function blog() {
     <div className="py">
       <Header />
 
-      <div className="bg-red-500 mx-40 mt-10 h-[30rem] relative overflow-hidden">
+      <div className=" mx-40 mt-10 h-[30rem] relative overflow-hidden">
         {/* Imagen de fondo */}
         <div className="absolute inset-0">
           <Image src={FONDO} alt="Fondo" fill style={{ objectFit: "cover" }} priority />
@@ -44,7 +44,7 @@ export default function blog() {
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 {data.map((article) => {
-                  const tituloNivel1 = article.titulos.find((t) => t.nivel === 1)?.texto || "Sin título";
+                  
 
                   return (
                     <div
@@ -54,7 +54,7 @@ export default function blog() {
                       <div className="relative h-48 w-full">
                         <Image
                           src={article.imagen1}
-                          alt={`Imagen de ${tituloNivel1}`}
+                          alt={`Imagen de `}
                           fill
                           style={{ objectFit: "cover" }}
                           className="rounded-t-lg"
@@ -62,7 +62,7 @@ export default function blog() {
                         />
                       </div>
                       <div className="p-4">
-                        <h3 className="text-xl font-semibold mb-2 text-gray-800">{tituloNivel1}</h3>
+                        <h3 className="text-xl font-semibold mb-2 text-gray-800">{article.titulo}</h3>
                         <p className="text-gray-600 mb-4">{article.resumen}</p>
                         <p className="text-sm text-gray-500 italic">Autor: {article.autor}</p>
                       </div>

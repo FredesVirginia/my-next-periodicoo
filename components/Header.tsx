@@ -25,13 +25,15 @@ export default function Header() {
     >
       <motion.h1
         variants={itemVariants}
-        className="h1-blog text-8xl text-white"
+        className="bg-white/10 backdrop-blur-md h1-blog text-white text-7xl rounded-xl px-9 py-1 text-center"
       >
-        Bolas de algodon
+     
+           BOLAS DE ALGODON
+        
       </motion.h1>
       <motion.p
         variants={itemVariants}
-        className="text-gray-400 text-white"
+        className="mt-5 text-white"
       >
         MULTIPUPOSE MAGACZIINE AND BLOG THEME
       </motion.p>

@@ -10,7 +10,7 @@ export interface FormCreateNewsProps{
 export default function formCreateNews( props : FormCreateNewsProps) {
   return (
     <div>
-        { props.type === "FIRTS" ? ( <CreateFirtPlantilla/> ) : ( <CreatedSecondPlantilla/>)}
+        { props.type === "FIRTS" ? ( <CreatedSecondPlantilla/> ) : ( <CreateFirtPlantilla/>)}
     </div>
   )
 }

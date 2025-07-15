@@ -1,80 +1,119 @@
 import React from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field, ErrorMessage , FieldArray } from "formik";
 import * as Yup from "yup";
 export default function CreatedSecondPlantilla() {
   const validationSchema = Yup.object({
     textarea1: Yup.string().required("Este campo es obligatorio"),
     textarea2: Yup.string().required("Este campo es obligatorio"),
-    textarea3: Yup.string().required("Este campo es obligatorio"),
+    secciones: Yup.array().of(
+    Yup.object().shape({
+      tipo: Yup.string().oneOf(["TEXTO", "LISTA"]).required(),
+      contenido: Yup.string().required("Este campo es requerido"),
+    })
+  ),
   });
   return (
     <Formik
       initialValues={{
-        textarea1: "",
-        textarea2: "",
-        textarea3: "",
+        secciones: [
+          {
+            tipo: "TEXTO",
+            contenido: "",
+          },
+        ],
       }}
       validationSchema={validationSchema}
-      validateOnMount={true} // Importante para que el botón esté deshabilitado al inicio
       onSubmit={(values, { resetForm }) => {
         alert(JSON.stringify(values, null, 2));
         resetForm();
       }}
     >
-      {({ errors, touched, isValid, dirty, isSubmitting }) => (
-        <Form className="flex flex-col gap-4 max-w-md mx-auto">
-          <div>
-            <h1 className="text-5xl text-center">SEGNDA PLANTILLA</h1>
-            <label htmlFor="textarea1" className="block font-medium">
-              Texto 1
-            </label>
-            <Field
-              as="textarea"
-              id="textarea1"
-              name="textarea1"
-              className={`w-full border rounded p-2 ${
-                touched.textarea1 && errors.textarea1 ? "border-red-500" : "border-gray-300"
+      {({ values, setFieldValue, errors, touched, isValid, dirty, isSubmitting }) => (
+        <Form className="flex flex-col gap-4 max-w-xl mx-auto">
+          <h1 className="text-4xl text-center">SEGUNDA PLANTILLA</h1>
+
+          <FieldArray name="secciones">
+  {({ push }) => (
+    <>
+      {values.secciones.map((seccion, index) => (
+        <div key={index} className="border p-4 rounded-md shadow">
+          <label className="block font-bold">Sección {index + 1}</label>
+
+          {/* Botones para elegir tipo */}
+          <div className="flex gap-2 my-2">
+            <button
+              type="button"
+              className={`p-1 px-4 rounded ${
+                seccion.tipo === "TEXTO" ? "bg-blue-500 text-white" : "bg-gray-200"
               }`}
-            />
-            {touched.textarea1 && errors.textarea1 && <div className="text-red-500 text-sm mt-1">{errors.textarea1}</div>}
+              onClick={() => setFieldValue(`secciones[${index}].tipo`, "TEXTO")}
+            >
+              Texto
+            </button>
+            <button
+              type="button"
+              className={`p-1 px-4 rounded ${
+                seccion.tipo === "LISTA" ? "bg-blue-500 text-white" : "bg-gray-200"
+              }`}
+              onClick={() => setFieldValue(`secciones[${index}].tipo`, "LISTA")}
+            >
+              Lista
+            </button>
           </div>
 
-          <div>
-            <label htmlFor="textarea2" className="block font-medium">
-              Texto 2
-            </label>
-            <Field
-              as="textarea"
-              id="textarea2"
-              name="textarea2"
-              className={`w-full border rounded p-2 ${
-                touched.textarea2 && errors.textarea2 ? "border-red-500" : "border-gray-300"
-              }`}
-            />
-            {touched.textarea2 && errors.textarea2 && <div className="text-red-500 text-sm mt-1">{errors.textarea2}</div>}
-          </div>
+          {/* Textarea dinámico */}
+          <Field
+            as="textarea"
+            name={`secciones[${index}].contenido`}
+            placeholder={
+              seccion.tipo === "LISTA"
+                ? "Escribe los ítems separados por línea"
+                : "Escribe el contenido del texto"
+            }
+            className={`w-full border rounded p-2 ${
+              touched.secciones?.[index]?.contenido &&
+              typeof errors.secciones?.[index] === "object" &&
+              errors.secciones?.[index]?.contenido
+                ? "border-red-500"
+                : "border-gray-300"
+            }`}
+          />
 
-          <div>
-            <label htmlFor="textarea3" className="block font-medium">
-              Texto 3
-            </label>
-            <Field
-              as="textarea"
-              id="textarea3"
-              name="textarea3"
-              className={`w-full border rounded p-2 ${
-                touched.textarea3 && errors.textarea3 ? "border-red-500" : "border-gray-300"
-              }`}
-            />
-            {touched.textarea3 && errors.textarea3 && <div className="text-red-500 text-sm mt-1">{errors.textarea3}</div>}
-          </div>
+          {/* Error de validación seguro */}
+          {touched.secciones?.[index]?.contenido &&
+            typeof errors.secciones?.[index] === "object" &&
+            errors.secciones?.[index]?.contenido && (
+              <div className="text-red-500 text-sm mt-1">
+                {errors.secciones[index].contenido}
+              </div>
+            )}
+        </div>
+      ))}
+
+      {/* Botón para agregar nueva sección */}
+      <button
+        type="button"
+        onClick={() =>
+          push({
+            tipo: "TEXTO",
+            contenido: "",
+          })
+        }
+        className="bg-purple-600 text-white p-2 rounded-md self-start"
+      >
+        + Nueva Sección
+      </button>
+    </>
+  )}
+</FieldArray>
+
 
           <button
             type="submit"
-            className="bg-blue-600 text-white py-2 rounded disabled:bg-gray-300"
             disabled={!isValid || !dirty || isSubmitting}
+            className="bg-green-600 text-white py-2 rounded disabled:bg-gray-300 mt-4"
           >
-            Enviar
+            Enviar artículo
           </button>
         </Form>
       )}
