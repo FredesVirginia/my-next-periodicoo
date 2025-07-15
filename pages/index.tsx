@@ -1,16 +1,13 @@
-import Image from "next/image";
-import ME from "../public/assets/img/yoooooooooooooo.png";
-import FONDO from "../public/assets/img/fondo24.jpg";
-import FONDO1 from "../public/assets/img/fondo13.jpg";
-import { motion } from "framer-motion";
-import ShinyText from "@/components/animation/button";
 import { Lightning } from "@/components/animation/rayos";
+import { motion } from "framer-motion";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { div } from "framer-motion/client";
-import { PiPottedPlantBold } from "react-icons/pi";
-import { FaLaptopCode, FaLocationArrow } from "react-icons/fa6";
 import { CgSmileMouthOpen } from "react-icons/cg";
+import { FaLaptopCode, FaLocationArrow } from "react-icons/fa6";
+import { PiPottedPlantBold } from "react-icons/pi";
+import FONDO1 from "../public/assets/img/fondo13.jpg";
+import ME from "../public/assets/img/yoooooooooooooo.png";
 export default function Home() {
   const router = useRouter();
   const [loading, setLoing] = useState(false);
