@@ -29,6 +29,15 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+
+       {
+        protocol: 'https',
+        hostname: 'static.diariofemenino.com',
+        port: '',
+        pathname: '/**',
+      },
+
+      
       // Agrega aquí otros dominios que uses
     ],
   },

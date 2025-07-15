@@ -1,18 +1,20 @@
-export interface IReqCreateBlog {
+export interface IReqCreatedBlog {
     autor:     string;
+    category:  string;
+    titulo:    string;
     resumen:   string;
-    imagen1 : string;
-    imagen2 : string;
+    imagen1:   string;
+    imagen2:   string;
     secciones: Seccione[];
-    titulos:   Titulo[];
 }
 
 export interface Seccione {
+    subtitulo: string;
+    bloques:   Bloque[];
+}
+
+export interface Bloque {
+    tipo:      string;
     contenido: string;
 }
 
-export interface Titulo {
-    texto:        string;
-    nivel:        number;
-    seccionIndex: number | null;
-}

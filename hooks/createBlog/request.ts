@@ -1,7 +1,8 @@
 import { blogApi } from "@/api/blogApi";
-import { IReqCreateBlog } from "./IReqCreateBlog";
+import { IReqCreatedBlog } from "./IReqCreateBlog";
 
-export const postBlog = async ( data : IReqCreateBlog)=>{
+
+export const postBlog = async ( data : IReqCreatedBlog)=>{
     const response = await blogApi.post(`/article/` , data)
     return response.data
 

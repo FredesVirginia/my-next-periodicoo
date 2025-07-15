@@ -1,12 +1,13 @@
 import { useMutation } from "@tanstack/react-query";
-import { IReqCreateBlog } from "./IReqCreateBlog";
+
 import { postBlog } from "./request";
+import { IReqCreatedBlog } from "./IReqCreateBlog";
 
 export const useHookCreatedBlog = ()=>{
 
     const mutationCreateBlog = useMutation({
         mutationKey : ["create-blog"],
-        mutationFn : (data : IReqCreateBlog)=>postBlog(data)
+        mutationFn : (data : IReqCreatedBlog)=>postBlog(data)
     })
 
     return {
