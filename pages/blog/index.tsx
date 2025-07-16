@@ -12,7 +12,7 @@ import PERFIL from "../../public/assets/img/yoooooooooooooo.png";
 import ME from "../../public/assets/img/me.png";
 import { div } from "framer-motion/client";
 import { FaSnowboarding } from "react-icons/fa";
-
+import { IoIosHeartEmpty } from "react-icons/io";
 const containerVariants = {
   hidden: {},
   visible: {
@@ -48,29 +48,8 @@ export default function index() {
   }
 
   return (
-    <div className="bg-gray-300  w-min-full  pt-10 rounded-2xl">
-      <div className="flex  justify-between mx-36 pt-10 bg-gray-200 px-10 rounded-2xl">
-        <div className="h1-description bg-re-400">
-          <h2 className="text-sky-900">Bolas de Algodon</h2>
-        </div>
-        <div className="bg-ed-700 flex  gap-20  ">
-          <div>
-            <p className="font-bold text-gray-700">Desarrollo Web</p>
-          </div>
-          <div>
-            {" "}
-            <p className="font-bold text-gray-700">Mamarachismo Ilustrado</p>
-          </div>
-          <div className=" w-10  rounded-2xl -translate-y-3">
-            <Image
-              src={PERFIL}
-              alt="Fondo"
-              priority
-              className="w-full rounded-full"
-            />
-          </div>
-        </div>
-      </div>
+    <div className="bg-gray-300  w-min-full  pt-10 ">
+    <Header/>
 
       <div className="bg-gray-200  mx-36 mt-5  flex flex-col justify-center items-center py-8 rounded-2xl">
         <p className="text-center font-bold text-gray-700">
@@ -100,21 +79,18 @@ export default function index() {
             Lorem ipsum dolor sit amet, consectetur adipisi
           </p>
           <p className="mx-10 text-gray-600">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis
-            nostrum provident nobis, necessitatibus vero a, in fugiat omnis
-            similique dicta nesciunt placeat sit aperiam blanditiis saepe vitae
-            quod est nulla.
+            He descubierto que la mente –como todo buen sistema lógico– fue hecha no para colapsar ante el caos, sino para organizarlo. No es en la tranquilidad donde se forja su poder, sino en la tormenta, cuando cada pensamiento se convierte en una línea de código que ordena el desastre, cuando cada decisión es una instrucción que reescribe la incertidumbre. Así como el programador transforma el error en aprendizaje, así también la mente aprende a convertir la vida en una serie de funciones que, aunque imperfectas, siempre pueden ser optimizadas.
           </p>
           <p className="mx-10 text-gray-700">
-            {" "}
+            
             <span className="text-red-900 font-bold fo">Movie</span> Read
           </p>
         </div>
       </div>
 
       <div>
-        <div className="max-w-7xl mx-auto p-6">
-          <h2 className="text-3xl font-bold mb-8 text-center text-white">
+        <div className="max-w-7xl  p-6 bg-gray-200 rounded-xl mx-36 mt-5">
+          <h2 className="text-3xl font-bold mb-8 text-center text-gray-600">
             Artículos
           </h2>
           <div className="max-w-7xl mx-auto p-6">
@@ -175,21 +151,30 @@ export default function index() {
         </div>
       </div>
 
-      <div className="flex  bg-red-900     mt-5 justify-between px-46 py-5 items-center gap-20">
-        <div className="text-white">
+      <div className="flex  bg-red-900     mt-5 justify-center px-46  items-center gap-20 py-10">
+        <div className="text-gray-300 text-sm text-center">
           <p>
             Lo importante no es saber, es deducir. Y si no, improvisar con
             estilo.
           </p>
+          <p>
+            © 2025. Bolas De Algodon Blog
+
+          </p>
+
+         <p className="flex items-center justify-center gap-1">
+    JonhCleinDev
+</p>
+
         </div>
-        <div className="w-36 h-36 boder">
+        {/* <div className="w-36 h-36 boder">
           <Image
             src={ME}
             alt="Fondo"
             priority
             className="w-full h-full object-contain rounded-full"
           />
-        </div>
+        </div> */}
       </div>
     </div>
   );
