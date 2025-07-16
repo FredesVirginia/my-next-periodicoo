@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 import { PropagateLoader } from "react-spinners";
 import { useRouter } from "next/router";
 import PERFIL from "../../public/assets/img/yoooooooooooooo.png";
-import ME from "../../public/assets/img/me.png"
+import ME from "../../public/assets/img/me.png";
 import { div } from "framer-motion/client";
 import { FaSnowboarding } from "react-icons/fa";
 
@@ -57,7 +57,10 @@ export default function index() {
           <div>
             <p className="font-bold text-gray-700">Desarrollo Web</p>
           </div>
-          <div>   <p className="font-bold text-gray-700">Mamarachismo Ilustrado</p></div>
+          <div>
+            {" "}
+            <p className="font-bold text-gray-700">Mamarachismo Ilustrado</p>
+          </div>
           <div className=" w-10  rounded-2xl -translate-y-3">
             <Image
               src={PERFIL}
@@ -70,7 +73,6 @@ export default function index() {
       </div>
 
       <div className="bg-gray-200  mx-36 mt-5  flex flex-col justify-center items-center py-8 rounded-2xl">
-      
         <p className="text-center font-bold text-gray-700">
           Bienvenido al <span className="text-red-800">rincón 🍂 </span> donde
           Sherlock Holmes tomaría mate y{" "}
@@ -111,69 +113,82 @@ export default function index() {
       </div>
 
       <div>
+        <div className="max-w-7xl mx-auto p-6">
+          <h2 className="text-3xl font-bold mb-8 text-center text-white">
+            Artículos
+          </h2>
           <div className="max-w-7xl mx-auto p-6">
-            <h2 className="text-3xl font-bold mb-8 text-center text-white">Artículos</h2>
-            <div className="max-w-7xl mx-auto p-6">
-              {!data ? (
-                <div className="flex justify-center items-center h-64">
-                  <p className="text-gray-500 text-lg">Cargando artículos...</p>
-                </div>
-              ) : data.length === 0 ? (
-                <div className="flex justify-center items-center h-64">
-                  <p className="text-gray-500 text-lg">No hay artículos disponibles.</p>
-                </div>
-              ) : (
-                <motion.div
-                  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
-                  initial="hidden"
-                  animate="visible"
-                  variants={containerVariants}
-                >
-                  {data.map((article, index) => {
-                   
-
-                    return (
-                      <motion.div
-                        onClick={() => handleClick(article.id)}
-                        className="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer"
-                        variants={cardVariants}
-                        whileHover={{ scale: 1.05, boxShadow: "0 10px 20px rgba(0,0,0,0.3)" }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <div className="relative h-48 w-full">
-                          <Image
-                            src={article.imagen1}
-                            alt={`Imagen `}
-                            fill
-                            style={{ objectFit: "cover" }}
-                            className="rounded-t-lg"
-                            priority
-                          />
-                        </div>
-                        <div className="p-4">
-                          <h3 className="text-xl font-semibold mb-2 text-gray-800">{article.titulo}</h3>
-                          <p className="text-gray-600 mb-4">{article.resumen}</p>
-                          <p className="text-sm text-gray-500 italic">Autor: {article.autor}</p>
-                        </div>
-                      </motion.div>
-                    );
-                  })}
-                </motion.div>
-              )}
-            </div>
+            {!data ? (
+              <div className="flex justify-center items-center h-64">
+                <p className="text-gray-500 text-lg">Cargando artículos...</p>
+              </div>
+            ) : data.length === 0 ? (
+              <div className="flex justify-center items-center h-64">
+                <p className="text-gray-500 text-lg">
+                  No hay artículos disponibles.
+                </p>
+              </div>
+            ) : (
+              <motion.div
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+                initial="hidden"
+                animate="visible"
+                variants={containerVariants}
+              >
+                {data.map((article, index) => {
+                  return (
+                    <motion.div
+                      onClick={() => handleClick(article.id)}
+                      className="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer"
+                      variants={cardVariants}
+                      whileHover={{
+                        scale: 1.05,
+                        boxShadow: "0 10px 20px rgba(0,0,0,0.3)",
+                      }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <div className="relative h-48 w-full">
+                        <Image
+                          src={article.imagen1}
+                          alt={`Imagen `}
+                          fill
+                          style={{ objectFit: "cover" }}
+                          className="rounded-t-lg"
+                          priority
+                        />
+                      </div>
+                      <div className="p-4">
+                        <h3 className="text-xl font-semibold mb-2 text-gray-800">
+                          {article.titulo}
+                        </h3>
+                        <p className="text-gray-600 mb-4">{article.resumen}</p>
+                        <p className="text-sm text-gray-500 italic">
+                          Autor: {article.autor}
+                        </p>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </motion.div>
+            )}
           </div>
         </div>
+      </div>
 
-           <div className="flex  bg-red-900     mt-5 justify-between px-46 py-5 items-center gap-20">
-        <div className="text-white"><p>Lo importante no es saber, es deducir. Y si no, improvisar con estilo.</p></div>
+      <div className="flex  bg-red-900     mt-5 justify-between px-46 py-5 items-center gap-20">
+        <div className="text-white">
+          <p>
+            Lo importante no es saber, es deducir. Y si no, improvisar con
+            estilo.
+          </p>
+        </div>
         <div className="w-36 h-36 boder">
-         
-            <Image
-              src={ME}
-              alt="Fondo"
-              priority
-             className="w-full h-full object-contain rounded-full"
-            />
+          <Image
+            src={ME}
+            alt="Fondo"
+            priority
+            className="w-full h-full object-contain rounded-full"
+          />
         </div>
       </div>
     </div>

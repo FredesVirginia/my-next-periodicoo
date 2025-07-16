@@ -28,7 +28,13 @@ export default function CreatedSecondPlantilla() {
 
   const validationSchema = Yup.object({
   titulo: Yup.string().required("Este campo es obligatorio"),
-  resumen: Yup.string().required("Este campo es obligatorio"),
+  resumen: Yup.string()
+        .required("Este campo es obligatorio")
+        .test("max-words", "Máximo 34 palabras", (value) => {
+          if (!value) return true;
+          const wordCount = value.trim().split(/\s+/).length;
+          return wordCount <= 34;
+        }),
   secciones: Yup.array()
     .of(
       Yup.object({

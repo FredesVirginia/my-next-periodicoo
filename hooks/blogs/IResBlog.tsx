@@ -65,23 +65,24 @@ export interface Bloque {
 export interface IResBlogID {
     id:               string;
     autor:            string;
+    titulo:           string;
     imagen1:          string;
     imagen2:          string;
     fechaPublicacion: Date;
     resumen:          string;
     category:         string;
-    titulos:          Titulo2[];
-    seccionesTexto:   SeccionesTexto2[];
+    seccionesTexto:   SeccionesTexto[];
 }
 
-export interface SeccionesTexto2 {
+export interface SeccionesTexto {
     id:        string;
-    contenido: string;
-    titulo:    Titulo2[];
+    subtitulo: string;
+    bloques:   Bloque[];
 }
 
-export interface Titulo2 {
-    id:    string;
-    texto: string;
-    nivel: number;
+export interface Bloque {
+    id:        string;
+    tipo:      string;
+    contenido: string;
 }
+
