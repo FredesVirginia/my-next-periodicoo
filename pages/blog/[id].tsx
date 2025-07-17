@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import { useBlogId } from "@/hooks/blogs/useHookBlog";
 import { useEffect, useState } from "react";
 import Header from "@/components/Header";
+import Layout from "@/components/layouts/Layout";
 
 export default function BlogDetalle() {
   const router = useRouter();
@@ -35,9 +36,8 @@ export default function BlogDetalle() {
   }
 
   return (
-    <div className="bg-gray-300 pt-10">
-      <Header />
-      <article className="max-w-7xl  mx-36 bg-gray-200 rounded-xl shadow-lg p-6 my-10">
+   <Layout>
+     <article className="max-w-7xl    rounded-xl shadow-lg p-6 my-10">
         {/* Título */}
         <h1 style={{ fontFamily: "" }} className="text-3xl md:text-4xl font-bold mb-4 text-gray-600">
           {data.titulo}
@@ -118,8 +118,6 @@ export default function BlogDetalle() {
           </section>
         ))}
       </article>
-
-      <Footer />
-    </div>
+   </Layout>
   );
 }

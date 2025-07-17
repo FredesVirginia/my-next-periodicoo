@@ -11,8 +11,8 @@ export default function Layout({ children }: LayoutProps) {
    <div className="min-h-screen flex flex-col">
   <Header />
 
-  <div className="flex-grow bg-gray-100 border mx-40 mt-10 ">
-    <h1 className="text-3xl text-sky-900 font-bold text-center">Articulos</h1>
+  <div className="flex-grow  mx-40 my-10 ">
+    
     {children}
   </div>
 

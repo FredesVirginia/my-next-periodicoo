@@ -1,67 +1,43 @@
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { TiHome } from "react-icons/ti";
-import PERFIL from "../public/assets/img/yoooooooooooooo.png";
 import Intro from "./layouts/Intro";
+import { useRouter } from "next/router";
 export default function Header() {
-    const [isDark, setIsDark] = useState(false);
+   const router = useRouter();
+   // Define las rutas donde quieres mostrar Intro
+  const rutasConIntro = ["/blog"]; // Solo home y "otra-pagina"
 
-  useEffect(() => {
-    // Al montar el componente, sincroniza con la clase html
-    const theme = localStorage.getItem("theme");
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-      setIsDark(true);
-    }
-  }, []);
-
-  const toggleDarkMode = () => {
-    if (isDark) {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-      setIsDark(false);
-    } else {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-      setIsDark(true);
-    }
-  };
+  const mostrarIntro = rutasConIntro.includes(router.pathname);
   return (
-   <div>
-     <div className="flex  justify-between  pt-20 bg-gray-200 h-30 items-center px-40 rounded-2xl pb-10">
-
-      
-        <div className="h1-description flex-[4] bg-re-400">
+    <div>
+      <div className="flex  justify-between  py-10 bg-gray-200 h-32 items-center px-50  pb-10">
+        <div className="h1-description md:flex-[2] flex-[4] bg-re-400 ">
           <h2 className="text-sky-900">Bolas de Algodon</h2>
         </div>
-        <div className="bg-ed-700 flex flex-[3] justify-center items-center gap-10 bg-red900 text-base ">
-            <div>
-          <Link href={"/"}> <TiHome/></Link>
+        <div className="bg-ed-700 flex flex-[3] justify-center items-center gap-10  text-base ">
+          <div>
+            <Link href={"/"}>
+              {" "}
+              <TiHome />
+            </Link>
           </div>
-            <div>
+          <div>
             <p className="font-bold text-gray-700">Sobre Mi</p>
           </div>
           <div>
             <p className="font-bold text-gray-700">Desarrollo Web</p>
           </div>
           <div>
-            <p className="font-bold text-gray-700">Mamarachismo Ilustrado</p>
+            <p className="font-bold text-gray-700">Existencialismo</p>
           </div>
 
-           
-          {/* <div className=" w-10  rounded-2xl">
-            <Image
-              src={PERFIL}
-              alt="Fondo"
-              priority
-              className="w-full rounded-full"
-            />
-          </div> */}
+           <div>
+            <p className="font-bold text-gray-700">Sitio Web</p>
+          </div>
         </div>
       </div>
-      <Intro/>
-     
-   </div>
+     {mostrarIntro && <Intro />}
+    </div>
   );
 }
