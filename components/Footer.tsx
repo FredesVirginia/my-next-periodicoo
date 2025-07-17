@@ -1,12 +1,11 @@
-import React from "react";
-import Image from "next/image";
-import FONDO from "../public/assets/img/fondo30.jpg";
 export default function Footer() {
   return (
-    <div style={{ backgroundColor: "#7a997f" }} className="h-27 flex justify-between items-center  px-30">
-      <p className="font-menu text-white">Bolas de Algodon</p>
-      <div className="relative h-26 w-96">
-        <Image src={FONDO} alt="Fondo" fill style={{ objectFit: "contain" }} priority className="" />
+    <div className="flex  bg-sky-900     mt-5 justify-center px-46  items-center gap-20 py-10">
+      <div className="text-gray-100 text-sm text-center">
+        <p>© 2025. Bolas De Algodon Blog</p>
+        <p>Lo importante no es saber, es deducir. Y si no, improvisar con estilo.</p>
+
+        <p className="flex items-center justify-center gap-1">JonhCleinDev</p>
       </div>
     </div>
   );

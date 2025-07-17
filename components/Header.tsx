@@ -1,10 +1,9 @@
 import Image from "next/image";
-import PERFIL from "../public/assets/img/yoooooooooooooo.png";
-import { TiHome } from "react-icons/ti";
-import DarkModeToggle from "./animation/darkMode";
-import { useEffect, useState } from "react";
-import ThemeToggle from "./animation/darkMode";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { TiHome } from "react-icons/ti";
+import PERFIL from "../public/assets/img/yoooooooooooooo.png";
+import Intro from "./layouts/Intro";
 export default function Header() {
     const [isDark, setIsDark] = useState(false);
 
@@ -30,13 +29,13 @@ export default function Header() {
   };
   return (
    <div>
-     <div className="flex  justify-between mx-36 pt-10 bg-gray-200 h-30 items-center px-10 rounded-2xl pb-10">
+     <div className="flex  justify-between  pt-20 bg-gray-200 h-30 items-center px-40 rounded-2xl pb-10">
 
       
         <div className="h1-description flex-[4] bg-re-400">
           <h2 className="text-sky-900">Bolas de Algodon</h2>
         </div>
-        <div className="bg-ed-700 flex flex-[5] justify-center items-center gap-10 bg-red900 text-sm ">
+        <div className="bg-ed-700 flex flex-[3] justify-center items-center gap-10 bg-red900 text-base ">
             <div>
           <Link href={"/"}> <TiHome/></Link>
           </div>
@@ -51,16 +50,18 @@ export default function Header() {
           </div>
 
            
-          <div className=" w-10  rounded-2xl">
+          {/* <div className=" w-10  rounded-2xl">
             <Image
               src={PERFIL}
               alt="Fondo"
               priority
               className="w-full rounded-full"
             />
-          </div>
+          </div> */}
         </div>
       </div>
+      <Intro/>
+     
    </div>
   );
 }

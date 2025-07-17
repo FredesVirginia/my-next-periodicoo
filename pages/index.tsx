@@ -34,7 +34,7 @@ export default function Home() {
     );
   }
   return (
-    <div className="relative w-full text-white ">
+    <div className="relative ">
       {/* Imagen de fondo ocupando toda la pantalla */}
       <div
         style={{
@@ -55,7 +55,7 @@ export default function Home() {
       </div>
 
       {/* Contenido encima de la imagen */}
-      <div className="relative z-10">
+      <div className="relative z-10 text-white">
         <motion.div
           className="flex pt-10 justify-between mx-10"
           initial={{ opacity: 0, x: -40 }}
