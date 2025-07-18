@@ -45,7 +45,7 @@ export default function About() {
   const groupedImages = Array.from({ length: rows }, (_, i) => images.slice(i * imagesPerRow, (i + 1) * imagesPerRow));
   return (
     <Layout>
-      <div className="bg-ed-700 mx-32 flex flex-col gap-5">
+      <div className="bg-ed-700 md:mx-16 mx-32 flex flex-col gap-5">
         <h1 className="text-5xl font-bold">Sobre Mí</h1>
         <p className="text-[17px] text-gray-600">
           Soy una desarrolladora web 🤖 apasionada por la automatización de procesos y la eliminación de tareas repetitivas 👨‍💻,

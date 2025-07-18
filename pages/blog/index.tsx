@@ -45,7 +45,7 @@ export default function index() {
       <div>
         <div className="  ">
           <h2 className="text-3xl mt-5 font-b mb-8 text-center text-sky-900">Artículos</h2>
-          <div className="max-w-6xl mx-32 b-red-400 ">
+          <div className="max-w-6xl md:mx-16 mx-32 b-red-400 ">
             {!data ? (
               <div className="flex justify-center items-center h-64">
                 <p className="text-gray-500 text-lg">Cargando artículos...</p>

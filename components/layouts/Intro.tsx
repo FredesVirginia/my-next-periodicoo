@@ -7,7 +7,7 @@ import PERFIL from "../../public/assets/img/me10.png";
 import Link from "next/link";
 export default function Intro() {
   return (
-    <div className=" bg-gray-200 px-58  -mt-5 pb-8 ">
+    <div className=" bg-gray-200 md:px-41 px-58  -mt-5 pb-8 ">
       <div className="flex justify-between mx-14 gap-30 bg-bue-500 items-center">
         <div className="bg-rd-700">
           <p className="text-gray-600 text-3xl font-bold">Virginia Belen Fredes</p>

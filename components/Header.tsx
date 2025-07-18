@@ -11,7 +11,7 @@ export default function Header() {
   const mostrarIntro = rutasConIntro.includes(router.pathname);
   return (
     <div>
-      <div className="flex  justify-between   py-20  bg-gray-200 h-32 items-center px-72  pb-20">
+      <div className="flex  justify-between   py-20  bg-gray-200 h-32 items-center md:px-54 px-72  pb-20">
         <div className="h1-description md:flex-[2] flex-[4] bg-re-400 ">
           <h2 className="text-sky-900">Bolas de Algodon</h2>
         </div>
