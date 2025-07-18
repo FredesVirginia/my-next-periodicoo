@@ -1,20 +1,10 @@
-import Header from "@/components/Header";
-import React, { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import FONDO from "../../public/assets/img/fondo71.jpg";
-import { useBlog } from "@/hooks/blogs/useHookBlog";
-import Footer from "@/components/Footer";
-import { motion } from "framer-motion";
-import { PropagateLoader } from "react-spinners";
-import { useRouter } from "next/router";
-import PERFIL from "../../public/assets/img/yoooooooooooooo.png";
-import ME from "../../public/assets/img/me.png";
-import { div } from "framer-motion/client";
-import { FaSnowboarding } from "react-icons/fa";
-import { IoIosHeartEmpty } from "react-icons/io";
-import { Main } from "next/document";
 import Layout from "@/components/layouts/Layout";
+import { useBlog } from "@/hooks/blogs/useHookBlog";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { useState } from "react";
+import { PropagateLoader } from "react-spinners";
 
 const containerVariants = {
   hidden: {},
@@ -51,24 +41,18 @@ export default function index() {
   }
 
   return (
-   
-
-     <Layout> 
-        <div>
-        <div className="max-w-7xl mx-auto ">
-          <h2 className="text-3xl mt-5 font-b mb-8 text-center text-sky-900">
-            Artículos
-          </h2>
-          <div className="max-w-7xl mx-auto ">
+    <Layout>
+      <div>
+        <div className="  ">
+          <h2 className="text-3xl mt-5 font-b mb-8 text-center text-sky-900">Artículos</h2>
+          <div className="max-w-6xl mx-32 b-red-400 ">
             {!data ? (
               <div className="flex justify-center items-center h-64">
                 <p className="text-gray-500 text-lg">Cargando artículos...</p>
               </div>
             ) : data.length === 0 ? (
               <div className="flex justify-center items-center h-64">
-                <p className="text-gray-500 text-lg">
-                  No hay artículos disponibles.
-                </p>
+                <p className="text-gray-500 text-lg">No hay artículos disponibles.</p>
               </div>
             ) : (
               <motion.div
@@ -81,7 +65,7 @@ export default function index() {
                   return (
                     <motion.div
                       onClick={() => handleClick(article.id)}
-                      className="bg-white rounded-lg shadow-lg  h-96 overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer"
+                      className="bg-white rounded-lg shadow-lg   w-80 h-[26rem] overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer"
                       variants={cardVariants}
                       whileHover={{
                         scale: 1.05,
@@ -89,7 +73,7 @@ export default function index() {
                       }}
                       transition={{ duration: 0.3 }}
                     >
-                      <div className="relative h-48 w-full">
+                      <div className="relative h-48 w-80">
                         <Image
                           src={article.imagen1}
                           alt={`Imagen `}
@@ -99,15 +83,29 @@ export default function index() {
                           priority
                         />
                       </div>
+                      <p className="px-4 pt-2 text-gray-600 text-sm">
+                        {new Date(article.fechaPublicacion).toLocaleDateString("es-ES", {
+                          day: "2-digit",
+                          month: "long",
+                          year: "numeric",
+                        })}
+                      </p>
                       <div className="p-4">
-                        <h3 className="text-xl font-semibold mb-2 text-gray-800">
-                          {article.titulo}
-                        </h3>
-                       <p className="text-gray-600 mb-4 line-clamp-3">{article.resumen}</p>
-
-                        <p className="text-sm text-gray-500 italic">
-                          Autor: {article.autor}
+                        <h3 className="text-base font-semibold mb-2 text-gray-800">{article.titulo}</h3>
+                        <p
+                          className="text-gray-600 text-sm line-clamp-3"
+                          style={{
+                            display: "-webkit-box",
+                            WebkitLineClamp: 3,
+                            WebkitBoxOrient: "vertical",
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                          }}
+                        >
+                          {article.resumen}
                         </p>
+
+                        <p className="text-sm text-gray-500 italic">Autor: {article.autor}</p>
                       </div>
                     </motion.div>
                   );
@@ -117,7 +115,6 @@ export default function index() {
           </div>
         </div>
       </div>
-     </Layout>
-
+    </Layout>
   );
 }

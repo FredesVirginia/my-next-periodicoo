@@ -1,11 +1,8 @@
 import { useRouter } from "next/router";
 
-import Footer from "@/components/Footer";
 
-import { useBlogId } from "@/hooks/blogs/useHookBlog";
-import { useEffect, useState } from "react";
-import Header from "@/components/Header";
 import Layout from "@/components/layouts/Layout";
+import { useBlogId } from "@/hooks/blogs/useHookBlog";
 
 export default function BlogDetalle() {
   const router = useRouter();
@@ -13,23 +10,7 @@ export default function BlogDetalle() {
   //const [dataBlog , setDataBlog] = useState<IPropsBlog>()
   const { data } = useBlogId(id as string);
   console.log("LA DATA ES ", data);
-  //  useEffect(() => {
-  //   if (data) {
-  //     setDataBlog({
-  //       primerTitulo: data.titulos.find((t) => t.nivel === 1)?.texto || "Sin título",
-  //       imagen1: data.imagen1,
-  //       imagen2: data.imagen2,
-  //       segundoSubtitulo1: data.seccionesTexto[0].titulo[0].texto,
-  //       texto1: data.seccionesTexto[0].contenido,
-  //       segundoSubtitulo2: data.seccionesTexto[1].titulo[0].texto,
-  //       texto2: data.seccionesTexto[1].contenido,
-  //       segundoSubtitulo3: data.seccionesTexto[2].titulo[0].texto,
-  //       texto3: data.seccionesTexto[2].contenido,
-  //       segundoSubtitulo4: data.seccionesTexto[3].titulo[0].texto,
-  //       texto4: data.seccionesTexto[3].contenido,
-  //     });
-  //   }
-  // }, [data]);
+
 
   if (!data) {
     return <p className="text-center mt-20">Cargando artículo...</p>;
@@ -37,7 +18,7 @@ export default function BlogDetalle() {
 
   return (
    <Layout>
-     <article className="max-w-7xl    rounded-xl shadow-lg p-6 my-10">
+     <article className="max-w-7xl  mx-30  rounded-xl shadow-lg p-6 my-10">
         {/* Título */}
         <h1 style={{ fontFamily: "" }} className="text-3xl md:text-4xl font-bold mb-4 text-gray-600">
           {data.titulo}
