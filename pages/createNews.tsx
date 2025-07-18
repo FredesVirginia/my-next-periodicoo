@@ -1,33 +1,32 @@
-import React, { useState } from "react";
-import plantilla1 from "../public/assets/img/plantilla1.png";
-import plantilla2 from "../public/assets/img/plantilla2.png";
-import Image from "next/image";
-import CreateFirtPlantilla from "@/components/plantillasTypePeriodico/createPlantillas/createFirtPlantilla";
-import { useRouter } from "next/router";
-import { DotLoader } from "react-spinners";
 import CreatedSecondPlantilla from "@/components/plantillasTypePeriodico/createPlantillas/createSecondPlantilla";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import secureLocalStorage from "react-secure-storage";
+import { ACCESS_TOKEN_KEY } from "./login";
 
 export default function createNews() {
- 
-  const [modalOpen, setModalOpen] = useState(true);
+ const router = useRouter()
+const [isAuth, setIsAuth] = useState(false);
 
-  // const handleClick = (type: string) => {
-  //   setLoing(true);
-  //   setTimeout(() => {
-  //     router.push(`//createBlog/${type}`);
-  //   }, 900);
-  // };
+  useEffect(() => {
+    const token = secureLocalStorage.getItem(ACCESS_TOKEN_KEY);
+    if (!token) {
+      router.push("/login"); // Redirige si no hay token
+    } else {
+      setIsAuth(true); // Permite renderizar si hay token
+    }
+  }, []);
 
-  // if (loading) {
-  //   return (
-  //     <div className="fixed inset-0  flex justify-center items-center py-5">
-  //       <DotLoader color="#ca5d36" />
-  //     </div>
-  //   );
-  // }
+  if (!isAuth) return null; // o un loading spinner
+
+  
   return (
    <div>
     <CreatedSecondPlantilla/>
    </div>
   );
 }
+
+
+
+

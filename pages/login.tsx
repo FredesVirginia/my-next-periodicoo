@@ -1,16 +1,16 @@
-import Image from "next/image";
-import FONDO1 from "../public/assets/img/fondo20.jpg";
-import FONDO2 from "../public/assets/img/carita.png";
-import { motion } from "framer-motion";
-import secureLocalStorage from "react-secure-storage";
+import { IReqLogin } from "@/hooks/login/IReqLogin";
 import { useLogin } from "@/hooks/login/useLogin";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import secureLocalStorage from "react-secure-storage";
+import * as Yup from "yup";
+import FONDO2 from "../public/assets/img/carita.png";
+import FONDO1 from "../public/assets/img/fondo20.jpg";
+import toast from "react-hot-toast";
 export const ACCESS_TOKEN_KEY = "DRY";
 export const REFRESH_TOKEN_KEY = "KISS";
-import * as Yup from "yup";
-import { IReqLogin } from "@/hooks/login/IReqLogin";
-import { ErrorMessage, Field, Form, Formik, useFormik } from "formik";
-import { loginRequest } from "@/hooks/login/request";
-import { useRouter } from "next/router";
 export default function login() {
   const router = useRouter();
   const { mutationLogin } = useLogin();
@@ -37,10 +37,11 @@ export default function login() {
           console.log("Login exitoso:", data);
           secureLocalStorage.setItem(ACCESS_TOKEN_KEY, data.access_token);
           
-          console.log("AQUI ");
+          toast.success("Inicio Correcto")
           router.push("/createNews");
         },
         onError: (error) => {
+          toast.error("Error de Inicio Seccion")
           console.error("Error en login:", error);
           console.log("ERROR LOGIN", error);
         },

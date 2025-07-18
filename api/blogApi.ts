@@ -30,7 +30,8 @@ blogApi.interceptors.response.use(
       localStorage.clear();
       //const navigate = useNavigate(); // Obtén el hook
       //navigate("/login"); // Redirige al login
-      window.location.reload();
+     window.location.href = '/login';
+
     }
     // Retornamos el error para que pueda ser manejado por el código que llamó a la API
     return Promise.reject(error);

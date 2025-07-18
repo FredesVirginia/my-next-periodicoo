@@ -6,6 +6,7 @@ import FONDO from "../../../public/assets/img/fondo16.jpg";
 import { useHookCreatedBlog } from "@/hooks/createBlog/useHookCreateBlog";
 import { IReqCreatedBlog } from "@/hooks/createBlog/IReqCreateBlog";
 import { limpiarSecciones } from "@/utils/utils";
+import toast from "react-hot-toast";
 enum TypeBloque {
   TEXTO = "TEXTO",
   LISTA = "LISTA",
@@ -27,33 +28,30 @@ export default function CreatedSecondPlantilla() {
   const { mutationCreateBlog } = useHookCreatedBlog();
 
   const validationSchema = Yup.object({
-  titulo: Yup.string().required("Este campo es obligatorio"),
-  resumen: Yup.string()
-        .required("Este campo es obligatorio")
-        .test("max-words", "Máximo 34 palabras", (value) => {
-          if (!value) return true;
-          const wordCount = value.trim().split(/\s+/).length;
-          return wordCount <= 34;
-        }),
-  secciones: Yup.array()
-    .of(
-      Yup.object({
-        subtitulo: Yup.string().required("Este campo es obligatorio"),
-        bloques: Yup.array()
-          .of(
-            Yup.object({
-              tipo: Yup.string()
-                .oneOf(["TEXTO", "LISTA"])
-                .required("El tipo de bloque es obligatorio"),
-              contenido: Yup.string().required("El contenido es obligatorio"),
-            })
-          )
-          .min(1, "Agrega al menos un bloque"),
-      })
-    )
-    .min(1, "Agrega al menos una sección"),
-});
-
+    titulo: Yup.string().required("Este campo es obligatorio"),
+    resumen: Yup.string()
+      .required("Este campo es obligatorio")
+      .test("max-words", "Máximo 34 palabras", (value) => {
+        if (!value) return true;
+        const wordCount = value.trim().split(/\s+/).length;
+        return wordCount <= 34;
+      }),
+    secciones: Yup.array()
+      .of(
+        Yup.object({
+          subtitulo: Yup.string().required("Este campo es obligatorio"),
+          bloques: Yup.array()
+            .of(
+              Yup.object({
+                tipo: Yup.string().oneOf(["TEXTO", "LISTA"]).required("El tipo de bloque es obligatorio"),
+                contenido: Yup.string().required("El contenido es obligatorio"),
+              })
+            )
+            .min(1, "Agrega al menos un bloque"),
+        })
+      )
+      .min(1, "Agrega al menos una sección"),
+  });
 
   const sectionVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -75,10 +73,21 @@ export default function CreatedSecondPlantilla() {
       imagen1: "https://static.diariofemenino.com/uploads/psicologia/217225-sonar-gato.jpg",
       imagen2: "https://static.diariofemenino.com/uploads/psicologia/217225-sonar-gato.jpg",
       resumen: values.resumen.trim(),
-      secciones: seccionesLimpias
+      secciones: seccionesLimpias,
     };
 
-   mutationCreateBlog.mutate(data);
+    mutationCreateBlog.mutate(data , {
+      onSuccess : (data)=>{
+         toast.success("Se creo que Articulo")
+      },
+      onError: (error) => {
+          toast.error("ErrorCrear Articulo")
+          console.error("Error en login:", error);
+          console.log("ERROR LOGIN", error);
+        },
+    });
+
+    
   };
   return (
     <div className="relative">
@@ -178,7 +187,7 @@ export default function CreatedSecondPlantilla() {
                         className="bg-white p-5 rounded-xl shadow mb-8"
                       >
                         {/* Subtítulo de la sección */}
-                        <label className="block font-semibold mb-2 text-gray-700">Contenido de la  Sección {secIdx + 1}</label>
+                        <label className="block font-semibold mb-2 text-gray-700">Contenido de la Sección {secIdx + 1}</label>
                         <Field
                           name={`secciones[${secIdx}].subtitulo`}
                           placeholder="Introduce el subtítulo"
@@ -264,7 +273,7 @@ export default function CreatedSecondPlantilla() {
                           ],
                         })
                       }
-                      style={{backgroundColor : "#a55f28"}}
+                      style={{ backgroundColor: "#a55f28" }}
                       className=" text-white font-semibold py-2 px-6 rounded-lg shadow hover:bg-orange-100 transition"
                     >
                       + Nueva Sección
