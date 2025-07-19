@@ -45,7 +45,7 @@ export default function index() {
       <div>
         <div className="  ">
           <h2 className="text-3xl mt-5 font-b mb-8 text-center text-sky-900">Artículos</h2>
-          <div className="max-w-6xl md:mx-16 mx-32 b-red-400 ">
+          <div className="max-w-6xl  b-red-400 ">
             {!data ? (
               <div className="flex justify-center items-center h-64">
                 <p className="text-gray-500 text-lg">Cargando artículos...</p>
@@ -56,7 +56,7 @@ export default function index() {
               </div>
             ) : (
               <motion.div
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+                className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-8"
                 initial="hidden"
                 animate="visible"
                 variants={containerVariants}
@@ -65,7 +65,7 @@ export default function index() {
                   return (
                     <motion.div
                       onClick={() => handleClick(article.id)}
-                      className="bg-white rounded-lg shadow-lg   w-80 h-[26rem] overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer"
+                      className="bg-white rounded-lg shadow-lg   w-70 h-[26rem] overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer"
                       variants={cardVariants}
                       whileHover={{
                         scale: 1.05,

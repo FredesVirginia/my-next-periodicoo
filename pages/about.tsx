@@ -45,43 +45,48 @@ export default function About() {
   const groupedImages = Array.from({ length: rows }, (_, i) => images.slice(i * imagesPerRow, (i + 1) * imagesPerRow));
   return (
     <Layout>
-      <div className="bg-ed-700 md:mx-16 mx-32 flex flex-col gap-5">
-        <h1 className="text-5xl font-bold">Sobre Mí</h1>
-        <p className="text-[17px] text-gray-600">
-          Soy una desarrolladora web 🤖 apasionada por la automatización de procesos y la eliminación de tareas repetitivas 👨‍💻,
-          así como por la creación de soluciones escalables y a medida. Mi enfoque se centra en escribir código limpio y
-          mantenible, siguiendo las mejores prácticas y metodologías ágiles.
-        </p>
+     <div className=" md:px-0  px-10    py-10 flex flex-col gap-6 text-gray-900">
+  <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center md:text-left">Sobre Mí</h1>
 
-        <h2 className="text-3xl font-bold mt-5">Lo que me inspira</h2>
-        <ul
-          style={{
-            listStyleType: "disc",
-            paddingLeft: "1.5rem",
-            margin: "1rem 0",
-          }}
-          className="lista text-[18px] text-gray-600"
-        >
-          <li>
-            🌱 Estoy enfocado en evolucionar continuamente, buscando el crecimiento tanto en lo personal como en lo profesional.
-          </li>
-          <li>⏳ Me motiva descubrir herramientas de desarrollo personal y productividad que me acerquen a mi mejor versión.</li>
-          <li>🤝 Valoro el trabajo en equipo y disfruto colaborar con personas apasionadas por la tecnología.</li>
-        </ul>
+  <p className="text-base sm:text-lg text-gray-900 text-center md:text-left">
+    Soy una desarrolladora web 🤖 apasionada por la automatización de procesos y la eliminación de tareas repetitivas 👨‍💻,
+    así como por la creación de soluciones escalables y a medida. Mi enfoque se centra en escribir código limpio y
+    mantenible, siguiendo las mejores prácticas y metodologías ágiles.
+  </p>
 
-        <h2 className="text-3xl font-bold mt-5">Tecnologias ⚙️</h2>
-        <div className="grid grid-cols-8 gap-4 my-5">
-          {images.map((img, idx) => (
-            <Image key={idx} src={img} alt={`Imagen ${idx}`} width={80} height={80} className="rounded-lg object-cover" />
-          ))}
-        </div>
-        <h2 className="text-3xl font-bold">Mi Objetivo 🎯</h2>
-        <p className="text-[17px] text-gray-600">
-          Desde este blog quiero aportar valor compartiendo conocimientos sobre desarrollo web y tendencias digitales. Encontrarás
-          contenido técnico, reflexiones y consejos prácticos para tu crecimiento como desarrollador. ¡Acompañame en esta travesía
-          hacia un futuro lleno de innovación! 🚀
-        </p>
-      </div>
+  <h2 className="text-2xl sm:text-3xl text-center md:text-left font-bold mt-4">Lo que me inspira</h2>
+  <ul className="list-disc lista pl-6 text-base sm:text-lg text-gray-900 space-y-2">
+    <li>
+      🌱 Estoy enfocada en evolucionar continuamente, buscando el crecimiento tanto en lo personal como en lo profesional.
+    </li>
+    <li>
+      ⏳ Me motiva descubrir herramientas de desarrollo personal y productividad que me acerquen a mi mejor versión.
+    </li>
+    <li>🤝 Valoro el trabajo en equipo y disfruto colaborar con personas apasionadas por la tecnología.</li>
+  </ul>
+
+  <h2 className="text-2xl sm:text-3xl font-bold mt-6 text-center md:text-left">Tecnologías ⚙️</h2>
+  <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4 my-5">
+    {images.map((img, idx) => (
+      <Image
+        key={idx}
+        src={img}
+        alt={`Imagen ${idx}`}
+        width={80}
+        height={80}
+        className="rounded-lg object-cover"
+      />
+    ))}
+  </div>
+
+  <h2 className="text-2xl sm:text-3xl font-bold text-center md:text-left">Mi Objetivo 🎯</h2>
+  <p className="text-base sm:text-lg text-gray-900 text-center md:text-left">
+    Desde este blog quiero aportar valor compartiendo conocimientos sobre desarrollo web y tendencias digitales.
+    Encontrarás contenido técnico, reflexiones y consejos prácticos para tu crecimiento como desarrollador. ¡Acompañame
+    en esta travesía hacia un futuro lleno de innovación! 🚀
+  </p>
+</div>
+
     </Layout>
   );
 }
