@@ -39,10 +39,10 @@ export default function About() {
     PRIMERO17,
   ];
 
-  const rows = 8;
-  const imagesPerRow = Math.ceil(images.length / rows);
 
-  const groupedImages = Array.from({ length: rows }, (_, i) => images.slice(i * imagesPerRow, (i + 1) * imagesPerRow));
+ 
+
+  
   return (
     <Layout>
      <div className=" md:px-0  px-10    py-10 flex flex-col gap-6 text-gray-900">

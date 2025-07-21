@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { useState } from "react";
+import { MdMenu } from "react-icons/md";
 import { TiHome } from "react-icons/ti";
 import Intro from "./layouts/Intro";
-import { useRouter } from "next/router";
-import { MdMenu } from "react-icons/md";
 export default function Header() {
   const router = useRouter();
   // Define las rutas donde quieres mostrar Intro

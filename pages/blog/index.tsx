@@ -19,7 +19,7 @@ const cardVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0 },
 };
-export default function index() {
+export default function Index() {
   const { data } = useBlog();
   const router = useRouter();
   const [loading, setLoing] = useState(false);
@@ -61,9 +61,10 @@ export default function index() {
                 animate="visible"
                 variants={containerVariants}
               >
-                {data.map((article, index) => {
+                {data.map((article , index) => {
                   return (
                     <motion.div
+                    key={index}
                       onClick={() => handleClick(article.id)}
                       className="bg-white rounded-lg shadow-lg   w-70 h-[26rem] overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer"
                       variants={cardVariants}

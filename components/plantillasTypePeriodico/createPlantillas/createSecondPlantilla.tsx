@@ -1,4 +1,4 @@
-import { Field, FieldArray, Form, Formik } from "formik";
+import { Field, FieldArray, FieldProps, Form, Formik } from "formik";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import * as Yup from "yup";
@@ -45,8 +45,7 @@ export default function CreatedSecondPlantilla() {
               Yup.object({
                 tipo: Yup.string().oneOf(["TEXTO", "LISTA"]).required("El tipo de bloque es obligatorio"),
                 contenido: Yup.string().required("El contenido es obligatorio"),
-              })
-            )
+              }))
             .min(1, "Agrega al menos un bloque"),
         })
       )
@@ -77,7 +76,7 @@ export default function CreatedSecondPlantilla() {
     };
 
     mutationCreateBlog.mutate(data , {
-      onSuccess : (data)=>{
+      onSuccess : ()=>{
          toast.success("Se creo que Articulo")
       },
       onError: (error) => {
@@ -99,7 +98,7 @@ export default function CreatedSecondPlantilla() {
           zIndex: -1,
         }}
       >
-        <Image src={FONDO} alt={"hjhj"} fill style={{ objectFit: "cover" }} className="" priority />
+        <Image src={FONDO} alt={"Fondo"} fill style={{ objectFit: "cover" }} className="" priority />
       </div>
 
       <motion.div
@@ -153,7 +152,7 @@ export default function CreatedSecondPlantilla() {
               {/* Resumen */}
               <div>
                 <Field name="resumen">
-                  {({ field, meta }: any) => {
+                  {({ field, meta }: FieldProps) => {
                     const wordCount = field.value?.trim().split(/\s+/).filter(Boolean).length || 0;
                     return (
                       <div className="relative">

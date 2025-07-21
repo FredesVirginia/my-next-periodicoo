@@ -1,19 +1,28 @@
-import ME from "../../assets/img/yoooooooooooooo.png";
-import fondo from "../../assets/img/fondo13.jpg";
-import { FaLaptopCode } from "react-icons/fa6";
-import { PiPottedPlantBold } from "react-icons/pi";
+import { motion } from "framer-motion";
 import { CgSmileMouthOpen } from "react-icons/cg";
 import { FaLocationArrow } from "react-icons/fa";
-import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { FaLaptopCode } from "react-icons/fa6";
+import { PiPottedPlantBold } from "react-icons/pi";
+import Image from "next/image";
+import fondo from "../../assets/img/fondo13.jpg";
+import ME from "../../assets/img/yoooooooooooooo.png";
+import { useRouter } from "next/router";
 
 export default function Inicio() {
-  const navigate = useNavigate();
+  const router = useRouter();
   return (
     <div className="relative w-full text-white p-4">
       {/* Imagen de fondo ocupando toda la pantalla */}
       <div className="absolute inset-0 z-0 flex">
-        <img src={fondo} alt="" className="w-full h-full object-cover" />
+        {/* <img src={fondo} alt="" className="w-full h-full object-cover" /> */}
+        <Image
+          src={fondo}
+          alt=""
+          fill
+          className="object-cover"
+          style={{ zIndex: -1 }} // opcional, según tu layout
+          priority // si es una imagen importante para la carga inicial
+        />
       </div>
 
       {/* Contenido encima de la imagen */}
@@ -76,17 +85,11 @@ export default function Inicio() {
           transition={{ duration: 1 }}
         >
           <div className="bg-white/10 backdrop-blur-md flex-1 py-5 px-4 rounded-3xl flex flex-col justify-center items-center">
+            <p className="h1-edu text-center">Soy Vicky, también conocida como John Clein. Desarrolladora web.</p>
+            <p className="h1-edu text-center">Me gusta pensar que llevo dentro a un noble inglés rebelde del siglo XVII.</p>
             <p className="h1-edu text-center">
-              Soy Vicky, también conocida como John Clein. Desarrolladora web.
-            </p>
-            <p className="h1-edu text-center">
-              Me gusta pensar que llevo dentro a un noble inglés rebelde del
-              siglo XVII.
-            </p>
-            <p className="h1-edu text-center">
-              En este blog hablo de desarrollo web, sí… Pero también de las
-              preguntas que no se responden con código: reflexiones, vivencias y
-              poemas que nacen del caos y la calma.
+              En este blog hablo de desarrollo web, sí… Pero también de las preguntas que no se responden con código: reflexiones,
+              vivencias y poemas que nacen del caos y la calma.
             </p>
           </div>
 
@@ -97,24 +100,32 @@ export default function Inicio() {
             transition={{ duration: 1.2 }}
           >
             <div className="w-76 h-76 bg-red0 bg-white/10 backdrop-blur-md p-3 rounded-2xl">
-              <img
+              {/* <img src={ME} alt="Vicky" className="w-full h-full object-cover rounded-2xl" /> */}
+              <Image
                 src={ME}
                 alt="Vicky"
                 className="w-full h-full object-cover rounded-2xl"
+                width={500} // poné el tamaño real de la imagen
+                height={500}
               />
             </div>
           </motion.div>
         </motion.div>
 
-            <motion.div
+        <motion.div
           className="flex justify-center mt-16"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 0.5 }}
         >
-          <button  onClick={()=> {
-            navigate("/inicio")
-          }} className="-mt-10 flex  items-center gap-4 bg-white/10 backdrop-blur-md py-2 px-4 rounded-2xl cursor-pointer ">Una mente inquieta escribe así <FaLocationArrow/></button>
+          <button
+            onClick={() => {
+              router.push("/inicio");
+            }}
+            className="-mt-10 flex  items-center gap-4 bg-white/10 backdrop-blur-md py-2 px-4 rounded-2xl cursor-pointer "
+          >
+            Una mente inquieta escribe así <FaLocationArrow />
+          </button>
         </motion.div>
         <motion.div
           className="flex justify-center mt-16"
@@ -122,12 +133,8 @@ export default function Inicio() {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 0.5 }}
         >
-          <p className="text-black font-bold">
-            © 2025 Fredes Virginia - Todos los derechos reservados
-          </p>
+          <p className="text-black font-bold">© 2025 Fredes Virginia - Todos los derechos reservados</p>
         </motion.div>
-
-         
       </div>
     </div>
   );

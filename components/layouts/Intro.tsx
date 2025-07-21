@@ -1,10 +1,6 @@
-import React from "react";
 import Image from "next/image";
-import { FaInstagram } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
-import { FaGithub } from "react-icons/fa";
+import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
 import PERFIL from "../../public/assets/img/me10.png";
-import Link from "next/link";
 export default function Intro() {
   return (
    <div className="bg-gray-200 md:px-54     -mt-5 pb-8">

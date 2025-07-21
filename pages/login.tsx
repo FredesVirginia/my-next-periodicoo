@@ -11,7 +11,7 @@ import FONDO1 from "../public/assets/img/fondo20.jpg";
 import toast from "react-hot-toast";
 export const ACCESS_TOKEN_KEY = "DRY";
 export const REFRESH_TOKEN_KEY = "KISS";
-export default function login() {
+export default function Login() {
   const router = useRouter();
   const { mutationLogin } = useLogin();
   const INITIAL_VALUES = {
@@ -46,7 +46,7 @@ export default function login() {
           console.log("ERROR LOGIN", error);
         },
       });
-    } catch (error: any) {
+    } catch (error) {
       console.log("Error", error);
     }
   };
