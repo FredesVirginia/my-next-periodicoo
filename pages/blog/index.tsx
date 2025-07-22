@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { PropagateLoader } from "react-spinners";
+import { HashLoader, PropagateLoader } from "react-spinners";
 
 const containerVariants = {
   hidden: {},
@@ -20,7 +20,7 @@ const cardVariants = {
   visible: { opacity: 1, y: 0 },
 };
 export default function Index() {
-  const { data } = useBlog();
+  const { data , response } = useBlog();
   const router = useRouter();
   const [loading, setLoing] = useState(false);
 
@@ -40,6 +40,8 @@ export default function Index() {
     );
   }
 
+  console.log("LA DATA ES " , data);
+   console.log("LA RESPONSE ES " , response);
   return (
     <Layout>
       <div>
@@ -49,6 +51,7 @@ export default function Index() {
             {!data ? (
               <div className="flex justify-center items-center h-64">
                 <p className="text-gray-500 text-lg">Cargando artículos...</p>
+                <HashLoader />
               </div>
             ) : data.length === 0 ? (
               <div className="flex justify-center items-center h-64">

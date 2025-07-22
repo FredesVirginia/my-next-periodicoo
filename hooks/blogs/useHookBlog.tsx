@@ -14,6 +14,8 @@ export const useBlog= ()=>{
     useEffect(()=>{
         if(response && response.data && response.data.length > 0){
             setData(response.data)
+        }else{
+            setData([])
         }
     },[response.data])
 
