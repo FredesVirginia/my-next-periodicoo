@@ -17,7 +17,7 @@ export default function BlogDetalle() {
 
   return (
     <Layout>
-      <article className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-10 rounded-xl shadow-lg">
+      <article className="max-w-7xl  mx-auto px-10 md:px-0 my-10 rounded-xl shadow-lg">
         {/* Imagen principal */}
         <img src={data.imagen1} alt="Imagen principal" className="w-full h-56 sm:h-64 md:h-80 object-cover rounded-lg mb-6" />
 
@@ -25,7 +25,7 @@ export default function BlogDetalle() {
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-center text-gray-700">{data.titulo}</h1>
 
         {/* Autor y fecha */}
-        <div className="flex  md:justify-center  sm:items-center sm:justify-between gap-4 sm:gap-10 mt-6 mb-7">
+        <div className="flex justify-center items-center md:justify-center  sm:items-center sm:justify-between gap-4 sm:gap-10 mt-6 mb-7">
           <div className="flex items-center gap-3">
             <Image width={32} height={32} src={ME} alt="Autor" className="rounded-full object-cover" />
             <p className="text-gray-600 font-medium">Virginia Belen Fredes</p>
