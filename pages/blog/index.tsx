@@ -74,7 +74,7 @@ export default function Index() {
                   />
                 </div>
               </div>
-            ) : data.length !== 0 ? (
+            ) : data.length == 0 ? (
               <div className="flex flex-col justify-center items-center h-64 gap-10 mt-5 mb-10">
                 <p className="text-gray-500 text-center text-sm max-w-md">
                   🕰️ Render pensó que nadie vendría tan rápido... y ahora lo
