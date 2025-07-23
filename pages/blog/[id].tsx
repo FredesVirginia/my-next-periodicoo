@@ -17,28 +17,15 @@ export default function BlogDetalle() {
 
   return (
     <Layout>
-      <article className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 rounded-xl shadow-lg">
+      <article className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-10 rounded-xl shadow-lg">
         {/* Imagen principal */}
-        {/* <img
-    src={data.imagen1}
-    alt="Imagen principal"
-    className="w-full h-56 sm:h-64 md:h-80 object-cover rounded-lg mb-6"
-  /> */}
-
-        <Image
-          src={data.imagen1}
-          alt="Imagen principal"
-          width={1200} // podés ajustarlo
-          height={320} // ajustalo según el diseño
-          className="w-full h-56 sm:h-64 md:h-80 object-cover rounded-lg mb-6"
-          style={{ objectFit: "cover" }}
-        />
+        <img src={data.imagen1} alt="Imagen principal" className="w-full h-56 sm:h-64 md:h-80 object-cover rounded-lg mb-6" />
 
         {/* Título */}
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-gray-700">{data.titulo}</h1>
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-center text-gray-700">{data.titulo}</h1>
 
         {/* Autor y fecha */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-10 mt-6 mb-7">
+        <div className="flex flex-col md:justify-center sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-10 mt-6 mb-7">
           <div className="flex items-center gap-3">
             <Image width={32} height={32} src={ME} alt="Autor" className="rounded-full object-cover" />
             <p className="text-gray-600 font-medium">Virginia Belen Fredes</p>
@@ -64,11 +51,42 @@ export default function BlogDetalle() {
 
             {/* Bloques */}
             {seccion.bloques.map((bloque) => {
+              // if (bloque.tipo === "TEXTO") {
+              //   return (
+              //     <p
+              //       key={bloque.id}
+              //       className="text-base sm:text-lg text-gray-700 mb-4 whitespace-pre-line"
+              //     >
+              //       {bloque.contenido}
+              //     </p>
+              //   );
+              // }
               if (bloque.tipo === "TEXTO") {
+                const partes = bloque.contenido.split(/(\[.*?\])/);
+
                 return (
-                  <p key={bloque.id} className="text-base sm:text-lg text-gray-700 mb-4 whitespace-pre-line">
-                    {bloque.contenido}
-                  </p>
+                  <div key={bloque.id} className="mb-4">
+                    {partes.map((parte, i) => {
+                      if (parte.match(/^\[.*\]$/)) {
+                        // Es texto entre corchetes, renderizar como h3 sin los corchetes
+                        const textoSinCorchetes = parte.slice(1, -1);
+                        return (
+                          <h3 key={i} className="md:text-xl sm:text-base  text-gray-600 mb-2">
+                            {textoSinCorchetes}
+                          </h3>
+                        );
+                      } else {
+                        // Texto normal, renderizar como párrafo sólo si no está vacío
+                        return (
+                          parte.trim() !== "" && (
+                            <p key={i} className="text-base sm:text-lg text-gray-700 whitespace-pre-line pb-2">
+                              {parte}
+                            </p>
+                          )
+                        );
+                      }
+                    })}
+                  </div>
                 );
               }
 
@@ -102,7 +120,7 @@ export default function BlogDetalle() {
                   <div key={bloque.id} className="mb-6">
                     {partes}
                     {items.length > 0 && (
-                      <ol className="list-decimal lista ml-5 sm:ml-6 text-base sm:text-lg text-gray-600 space-y-1 mb-2">
+                      <ol className="list-decimal ml-5 sm:ml-6 text-base sm:text-lg text-gray-600 space-y-1 mb-2">
                         {items.map((item, idx) => (
                           <li key={idx}>{item.replace(/^[\-\•]+/, "").trim()}</li>
                         ))}
