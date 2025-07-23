@@ -25,7 +25,7 @@ export default function BlogDetalle() {
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-center text-gray-700">{data.titulo}</h1>
 
         {/* Autor y fecha */}
-        <div className="flex flex-col md:justify-center sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-10 mt-6 mb-7">
+        <div className="flex  md:justify-center  sm:items-center sm:justify-between gap-4 sm:gap-10 mt-6 mb-7">
           <div className="flex items-center gap-3">
             <Image width={32} height={32} src={ME} alt="Autor" className="rounded-full object-cover" />
             <p className="text-gray-600 font-medium">Virginia Belen Fredes</p>
@@ -51,16 +51,7 @@ export default function BlogDetalle() {
 
             {/* Bloques */}
             {seccion.bloques.map((bloque) => {
-              // if (bloque.tipo === "TEXTO") {
-              //   return (
-              //     <p
-              //       key={bloque.id}
-              //       className="text-base sm:text-lg text-gray-700 mb-4 whitespace-pre-line"
-              //     >
-              //       {bloque.contenido}
-              //     </p>
-              //   );
-              // }
+             
               if (bloque.tipo === "TEXTO") {
                 const partes = bloque.contenido.split(/(\[.*?\])/);
 
