@@ -54,12 +54,24 @@ export default function Header() {
           <p className="font-bold text-gray-700">Sobre Mi</p>
         </Link>
       </div>
-      <div>
-        <p className="font-bold text-gray-700">Desarrollo Web</p>
-      </div>
-      <div>
-        <p className="font-bold text-gray-700">Existencialismo</p>
-      </div>
+     <div className="relative group inline-block">
+  <p className="font-bold text-gray-700 cursor-pointer">
+    Desarrollo Web
+  </p>
+  <span className=" animate__animated animate__rubberBand  absolute left-1/2 -translate-x-1/2 mt-2 px-3 py-1 rounded bg-gray-800 text-white text-xs opacity-0 group-hover:opacity-100 transition pointer-events-none z-10 whitespace-nowrap">
+    Próximamente
+  </span>
+</div>
+
+<div className="relative group inline-block">
+  <p className="font-bold text-gray-700 cursor-pointer">
+    Existencialismo
+  </p>
+  <span className="animate__animated animate__rubberBand  absolute left-1/2 -translate-x-1/2 mt-2 px-3 py-1 rounded bg-gray-800 text-white text-xs opacity-0 group-hover:opacity-100 transition pointer-events-none z-10 whitespace-nowrap">
+    Próximamente
+  </span>
+</div>
+
       <div>
         <a
           className="font-bold text-gray-700"
