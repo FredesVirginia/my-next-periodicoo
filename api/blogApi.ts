@@ -4,6 +4,8 @@ import axios from "axios";
 import secureLocalStorage from "react-secure-storage";
 // export const baseUrl = "http://localhost:3020"
 export const baseUrl ="https://my-nest-periodico-back.vercel.app"
+
+
 export const blogApi = axios.create({
     baseURL: baseUrl,
   headers: {
