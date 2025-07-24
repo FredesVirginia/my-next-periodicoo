@@ -1,4 +1,4 @@
-import TextType from "@/components/animation/shiny";
+
 import Layout from "@/components/layouts/Layout";
 import { useBlog } from "@/hooks/blogs/useHookBlog";
 import { motion } from "framer-motion";
@@ -63,16 +63,7 @@ export default function Index() {
                 </p>
                 <HashLoader color="gray" className="mt-5" />
 
-                <div className=" text-center text-gray-200 px-10 mt-5">
-                  <TextType
-                    text={[
-                      "La luz de algunas estrellas que ves en el cielo comenzó su viaje hace millones de años. 🌟 Cuando las mirás, estás viendo el pasado del universo. Así como ellas viajan hasta vos, este sitio también está en camino. Gracias por esperar. 🚀",
-                    ]}
-                    typingSpeed={100}
-                    showCursor={true}
-                    cursorCharacter="|"
-                  />
-                </div>
+               
               </div>
             ) : data.length == 0 ? (
               <div className="flex flex-col justify-center items-center h-64 gap-10 mt-5 mb-10">
@@ -85,16 +76,7 @@ export default function Index() {
                 </p>
                 <HashLoader color="gray" className="mt-5" />
 
-                <div className=" text-center text-gray-200 px-10 mt-5">
-                  <TextType
-                    text={[
-                      "La luz de algunas estrellas que ves en el cielo comenzó su viaje hace millones de años. 🌟 Cuando las mirás, estás viendo el pasado del universo. Así como ellas viajan hasta vos, este sitio también está en camino. Gracias por esperar. 🚀",
-                    ]}
-                    typingSpeed={100}
-                    showCursor={true}
-                    cursorCharacter="|"
-                  />
-                </div>
+              
               </div>
             ) : (
               <motion.div

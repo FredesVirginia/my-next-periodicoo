@@ -37,8 +37,23 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
 
+      {
+        protocol: 'https',
+        hostname: 'static.diariofemenino.com',
+        port: '',
+        pathname: '/**',
+      },
+
+      {
+        protocol: 'https',
+        hostname: 'i.pinimg.com',
+        port: '',
+        pathname: '/**',
+      },
+
+
       
-      // Agrega aquí otros dominios que uses
+      // Agrega aquí otros dominios que uses   https://i.pinimg.com
     ],
   },
 };

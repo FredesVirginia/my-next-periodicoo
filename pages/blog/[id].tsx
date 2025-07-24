@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
-
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { oneDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import Layout from "@/components/layouts/Layout";
 import { useBlogId } from "@/hooks/blogs/useHookBlog";
 import Image from "next/image";
@@ -15,11 +16,24 @@ export default function BlogDetalle() {
     return <p className="text-center mt-20">Cargando artículo...</p>;
   }
 
+  const detectarLenguaje = (contenido: string): string => {
+  if (contenido.includes("SELECT") || contenido.includes("FROM")) return "sql";
+  if (contenido.includes("async") || contenido.includes("await")) return "typescript";
+  return "text"; // fallback
+};
+
+
   return (
     <Layout>
       <article className="max-w-7xl  mx-auto px-10  my-10 ">
         {/* Imagen principal */}
-        <img src={data.imagen1} alt="Imagen principal" className="w-full h-56 sm:h-64 md:h-80 object-cover rounded-lg mb-6" />
+      <Image
+  src={data.imagen1}
+  alt="Imagen principal"
+  width={800} // Ajusta el ancho según necesidad
+  height={320} // Ajusta la altura según necesidad
+  className="w-full h-56 sm:h-64 md:h-80 object-cover rounded-lg mb-6"
+/>
 
         {/* Título */}
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-center text-gray-700">{data.titulo}</h1>
@@ -52,7 +66,7 @@ export default function BlogDetalle() {
             {/* Bloques */}
             {seccion.bloques.map((bloque) => {
              
-              if (bloque.tipo === "TEXTO") {
+             if (bloque.tipo === "TEXTO") {
                 const partes = bloque.contenido.split(/(\[.*?\])/);
 
                 return (
@@ -120,6 +134,13 @@ export default function BlogDetalle() {
                     {bracketText && <p className="pt-3 text-sm sm:text-base text-gray-700 whitespace-pre-line">{bracketText}</p>}
                   </div>
                 );
+              }
+
+              if(bloque.tipo ==="IMAGEN"){
+              return   <SyntaxHighlighter key={bloque.id} language={detectarLenguaje(bloque.contenido)} style={oneDark}>
+    {bloque.contenido}
+  </SyntaxHighlighter>
+
               }
 
               return null;

@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 enum TypeBloque {
   TEXTO = "TEXTO",
   LISTA = "LISTA",
+  IMAGEN ="IMAGEN"
 }
 type bloques = {
   tipo: TypeBloque;
@@ -22,6 +23,7 @@ type secciones = {
 export interface IPropsForm {
   titulo: string;
   resumen: string;
+  imagen:string;
   secciones: secciones[];
 }
 export default function CreatedSecondPlantilla() {
@@ -36,6 +38,7 @@ export default function CreatedSecondPlantilla() {
         const wordCount = value.trim().split(/\s+/).length;
         return wordCount <= 34;
       }),
+    imagen: Yup.string().required("Este campo es obligatorio"),
     secciones: Yup.array()
       .of(
         Yup.object({
@@ -43,7 +46,7 @@ export default function CreatedSecondPlantilla() {
           bloques: Yup.array()
             .of(
               Yup.object({
-                tipo: Yup.string().oneOf(["TEXTO", "LISTA"]).required("El tipo de bloque es obligatorio"),
+                tipo: Yup.string().oneOf(["TEXTO", "LISTA","IMAGEN"]).required("El tipo de bloque es obligatorio"),
                 contenido: Yup.string().required("El contenido es obligatorio"),
               }))
             .min(1, "Agrega al menos un bloque"),
@@ -64,17 +67,20 @@ export default function CreatedSecondPlantilla() {
 
   const handleClick = (values: IPropsForm) => {
     console.log("DATA 2 ", values);
+    console.log("LAS SECCIONES SON" , values.secciones)
     const seccionesLimpias = limpiarSecciones(values.secciones);
     const data: IReqCreatedBlog = {
       autor: "Jonh Clein",
       category: "PLANTILLA_1",
       titulo: values.titulo.trim(),
-      imagen1: "https://static.diariofemenino.com/uploads/psicologia/217225-sonar-gato.jpg",
+      imagen1: values.imagen.trim(),
       imagen2: "https://static.diariofemenino.com/uploads/psicologia/217225-sonar-gato.jpg",
       resumen: values.resumen.trim(),
       secciones: seccionesLimpias,
     };
 
+    console.log("LA DATA ES " , data)
+    
     mutationCreateBlog.mutate(data , {
       onSuccess : ()=>{
          toast.success("Se creo que Articulo")
@@ -112,6 +118,7 @@ export default function CreatedSecondPlantilla() {
           initialValues={{
             titulo: "",
             resumen: "",
+            imagen:"",
             secciones: [
               {
                 subtitulo: "",
@@ -172,68 +179,110 @@ export default function CreatedSecondPlantilla() {
                 </Field>
               </div>
 
+              {/* Imagen*/}
+              <div>
+                <Field
+                  as="textarea"
+                  id="imagen"
+                  name="imagen"
+                  rows={2}
+                  className={`w-full px-4 py-3 bg-white rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-amber-400 transition ${
+                    touched.imagen && errors.imagen ? "border-red-500 focus:ring-red-400" : "border-gray-300"
+                  }`}
+                  placeholder="Ingrese Link de Imagen"
+                />
+                {touched.imagen && errors.imagen && <p className="text-red-500 font-bold text-sm mt-2">{errors.imagen}</p>}
+              </div>
+
               {/* Secciones dinámicas */}
-              <FieldArray name="secciones">
-                {({ push: pushSection, remove: removeSection }) => (
+               <FieldArray name="secciones">
+      {({ push: pushSection, remove: removeSection }) => (
+        <>
+          {values.secciones.map((seccion, secIdx) => (
+            <motion.div
+              key={secIdx}
+              variants={sectionVariants}
+              initial="hidden"
+              animate="visible"
+              transition={{ duration: 0.4, delay: secIdx * 0.1 }}
+              className="bg-white p-5 rounded-xl shadow mb-8"
+            >
+              <label className="block font-semibold mb-2 text-gray-700">
+                Contenido de la Sección {secIdx + 1}
+              </label>
+              <Field
+                name={`secciones[${secIdx}].subtitulo`}
+                placeholder="Introduce el subtítulo"
+                className="w-full border border-gray-300 rounded p-2 mb-4"
+              />
+
+              {/* FIELD ARRAY DE BLOQUES */}
+              <FieldArray name={`secciones[${secIdx}].bloques`}>
+                {({ push: pushBloque, remove: removeBloque }) => (
                   <>
-                    {values.secciones.map((seccion, secIdx) => (
-                      <motion.div
-                        key={secIdx}
-                        variants={sectionVariants}
-                        initial="hidden"
-                        animate="visible"
-                        transition={{ duration: 0.4, delay: secIdx * 0.1 }}
-                        className="bg-white p-5 rounded-xl shadow mb-8"
-                      >
-                        {/* Subtítulo de la sección */}
-                        <label className="block font-semibold mb-2 text-gray-700">Contenido de la Sección {secIdx + 1}</label>
-                        <Field
-                          name={`secciones[${secIdx}].subtitulo`}
-                          placeholder="Introduce el subtítulo"
-                          className="w-full border border-gray-300 rounded p-2 mb-4"
-                        />
-                        {/* Bloques dentro de la sección */}
-                        <FieldArray name={`secciones[${secIdx}].bloques`}>
-                          {({ push: pushBloque, remove: removeBloque }) => (
-                            <>
-                              {seccion.bloques.map((bloque, bloqueIdx) => (
-                                <div key={bloqueIdx} className="mb-4">
-                                  {/* Selector tipo de bloque */}
-                                  <div className="flex  justify-between mb-2">
-                                    {["TEXTO", "LISTA"].map((tipo) => (
-                                      <button
-                                        key={tipo}
-                                        type="button"
-                                        onClick={() => setFieldValue(`secciones[${secIdx}].bloques[${bloqueIdx}].tipo`, tipo)}
-                                        className={`px-4 py-1 rounded cursor-pointer ${
-                                          bloque.tipo === tipo ? "bg-sky-400 text-white" : "bg-gray-200 text-gray-700"
-                                        }`}
-                                      >
-                                        {tipo}
-                                      </button>
-                                    ))}
-                                    {/* Botón quitar bloque */}
-                                    {seccion.bloques.length > 1 && (
-                                      <button
-                                        type="button"
-                                        className="text-red-500 font ml-2 bg-red-100 px-2 rounded-xl cursor-pointer"
-                                        onClick={() => removeBloque(bloqueIdx)}
-                                      >
-                                        Eliminar Bloque
-                                      </button>
-                                    )}
-                                  </div>
-                                  {/* Contenido del bloque */}
-                                  <Field
-                                    as="textarea"
-                                    name={`secciones[${secIdx}].bloques[${bloqueIdx}].contenido`}
-                                    placeholder={bloque.tipo === "LISTA" ? "Ítems separados por línea" : "Contenido del texto"}
-                                    className="w-full border border-gray-300 rounded p-2 mb-2"
-                                  />
-                                </div>
-                              ))}
-                              {/* Agregar bloque */}
-                              <button
+                    {seccion.bloques.map((bloque, bloqueIdx) => (
+                      <div key={bloqueIdx} className="mb-4">
+                        {/* Selector de tipo de bloque */}
+                        <div className="flex justify-between mb-2 gap-2">
+                          {['TEXTO', 'LISTA', 'IMAGEN'].map((tipo) => (
+                            <button
+                              key={tipo}
+                              type="button"
+                              onClick={() =>
+                                setFieldValue(
+                                  `secciones[${secIdx}].bloques[${bloqueIdx}].tipo`,
+                                  tipo
+                                )
+                              }
+                              className={`px-4 py-1 rounded cursor-pointer ${
+                                bloque.tipo === tipo
+                                  ? 'bg-sky-400 text-white'
+                                  : 'bg-gray-200 text-gray-700'
+                              }`}
+                            >
+                              {tipo}
+                            </button>
+                          ))}
+                          {seccion.bloques.length > 1 && (
+                            <button
+                              type="button"
+                              className="text-red-500 font ml-2 bg-red-100 px-2 rounded-xl cursor-pointer"
+                              onClick={() => removeBloque(bloqueIdx)}
+                            >
+                              Eliminar Bloque
+                            </button>
+                          )}
+                        </div>
+
+                        {/* CONTENIDO DEL BLOQUE: TEXTO/LISTA/IMAGEN */}
+                        {bloque.tipo === 'IMAGEN' ? (
+                          <div>
+                            <Field
+                              as="textarea"
+                              name={`secciones[${secIdx}].bloques[${bloqueIdx}].contenido`}
+                              placeholder="Pega aquí tu código"
+                              className="w-full border border-gray-300 rounded p-2 mb-2 font-mono bg-zinc-50"
+                              rows={6}
+                            />
+                          
+                          </div>
+                        ) : (
+                          <Field
+                            as="textarea"
+                            name={`secciones[${secIdx}].bloques[${bloqueIdx}].contenido`}
+                            placeholder={
+                              bloque.tipo === 'LISTA'
+                                ? 'Ítems separados por línea'
+                                : 'Contenido del texto'
+                            }
+                            className="w-full border border-gray-300 rounded p-2 mb-2"
+                          />
+                        )}
+                      </div>
+                    ))}
+
+                    {/* ------ Agregar Bloques ------ */}
+                    <button
                                 type="button"
                                 className="bg-green-600 text-white py-1 px-4 rounded hover:bg-green-700 transition w-full"
                                 onClick={() =>
@@ -245,41 +294,41 @@ export default function CreatedSecondPlantilla() {
                               >
                                 + Agregar Bloque
                               </button>
-                            </>
-                          )}
-                        </FieldArray>
-                        {/* Eliminar sección */}
-                        {values.secciones.length > 1 && (
-                          <button type="button" onClick={() => removeSection(secIdx)} className="text-red-600 font-bold mt-3">
-                            Eliminar sección
-                          </button>
-                        )}
-                      </motion.div>
-                    ))}
-                    {/* Botón agregar sección */}
-                    <motion.button
-                      type="button"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() =>
-                        pushSection({
-                          subtitulo: "",
-                          bloques: [
-                            {
-                              tipo: "TEXTO" as TypeBloque,
-                              contenido: "",
-                            },
-                          ],
-                        })
-                      }
-                      style={{ backgroundColor: "#a55f28" }}
-                      className=" text-white font-semibold py-2 px-6 rounded-lg shadow hover:bg-orange-100 transition"
-                    >
-                      + Nueva Sección
-                    </motion.button>
+
                   </>
                 )}
               </FieldArray>
+              {/* Eliminar sección */}
+              {values.secciones.length > 1 && (
+                <button
+                  type="button"
+                  onClick={() => removeSection(secIdx)}
+                  className="text-red-600 font-bold mt-3"
+                >
+                  Eliminar sección
+                </button>
+              )}
+            </motion.div>
+          ))}
+          {/* Botón agregar sección */}
+          <motion.button
+            type="button"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() =>
+              pushSection({
+                subtitulo: '',
+                bloques: [{ tipo: 'TEXTO', contenido: '' }],
+              })
+            }
+            style={{ backgroundColor: '#a55f28' }}
+            className="text-white font-semibold py-2 px-6 rounded-lg shadow hover:bg-orange-100 transition"
+          >
+            + Nueva Sección
+          </motion.button>
+        </>
+      )}
+    </FieldArray>
 
               {/* Botón submit */}
               <motion.button
