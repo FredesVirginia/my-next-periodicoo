@@ -16,13 +16,21 @@ export default function BlogDetalle() {
     return <p className="text-center mt-20">Cargando artículo...</p>;
   }
 
-  const detectarLenguaje = (contenido: string): string => {
-    if (contenido.includes("SELECT") || contenido.includes("FROM"))
-      return "sql";
-    if (contenido.includes("async") || contenido.includes("await"))
-      return "typescript";
-    return "text"; // fallback
-  };
+const detectarLenguaje = (contenido: string): string => {
+  if (contenido.includes("SELECT") || contenido.includes("FROM"))
+    return "sql";
+  if (contenido.includes("async") || contenido.includes("await"))
+    return "typescript";
+  // Detectar posible JSON
+  if (
+    (contenido.trim().startsWith("{") && contenido.trim().endsWith("}")) ||
+    (contenido.trim().startsWith("[") && contenido.trim().endsWith("]"))
+  ) {
+    return "json";
+  }
+  return "text"; // fallback
+};
+
 
   return (
     <Layout>
