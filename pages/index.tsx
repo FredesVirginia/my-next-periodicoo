@@ -144,7 +144,7 @@ export default function Home() {
     >
       <button
         onClick={handleClick}
-        className="flex items-center gap-3 bg-white/10 backdrop-blur-md py-2 px-4 rounded-2xl text-sm sm:text-base hover:bg-white/20 transition"
+        className=" animate__animated animate__pulse animate__slow animate__infinite	infinite flex items-center gap-3 bg-white/10 backdrop-blur-md py-2 px-4 rounded-2xl text-sm sm:text-base hover:bg-white/20 transition"
       >
         Una mente inquieta escribe así <FaLocationArrow />
       </button>
@@ -157,7 +157,7 @@ export default function Home() {
       animate={{ opacity: 1 }}
       transition={{ delay: 1.2, duration: 0.5 }}
     >
-      <p className="text-white/70 text-xs sm:text-sm text-center">
+      <p className="text-white/70 text-xs sm:text-sm text-center py-5">
         © 2025 Fredes Virginia - Todos los derechos reservados
       </p>
     </motion.div>
