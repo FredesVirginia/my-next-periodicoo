@@ -39,7 +39,7 @@ export default function Header() {
       )}
 
   {/* 🔵 Visible SOLO en pantallas md y mayores */}
-  <div className="hidden md:flex justify-between py-20 bg-gray-200 h-32 items-center md:px-54 md:pb-20">
+  <div className="hidden md:flex justify-between py-20 bg-gray-200 h-32 items-center md:pl-52 md:pr-32 md:pb-20">
     <div className="h1-description md:flex-[2] flex-[4] bg-re-400">
       <h2 className="text-sky-900">Bolas de Algodón</h2>
     </div>

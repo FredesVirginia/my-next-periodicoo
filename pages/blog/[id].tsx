@@ -17,7 +17,7 @@ export default function BlogDetalle() {
 
   return (
     <Layout>
-      <article className="max-w-7xl  mx-auto px-10 md:px-0 my-10 rounded-xl shadow-lg">
+      <article className="max-w-7xl  mx-auto px-10  my-10 ">
         {/* Imagen principal */}
         <img src={data.imagen1} alt="Imagen principal" className="w-full h-56 sm:h-64 md:h-80 object-cover rounded-lg mb-6" />
 

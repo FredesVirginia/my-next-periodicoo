@@ -45,7 +45,7 @@ export default function About() {
   
   return (
     <Layout>
-     <div className=" md:px-0  px-10    py-10 flex flex-col gap-6 text-gray-900">
+     <div className=" md:px-12  px-10    py-10 flex flex-col gap-6 text-gray-900">
   <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center md:text-left">Sobre Mí</h1>
 
   <p className="text-base sm:text-lg text-gray-900 text-center md:text-left">

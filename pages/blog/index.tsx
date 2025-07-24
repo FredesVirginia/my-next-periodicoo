@@ -51,9 +51,9 @@ export default function Index() {
           <h2 className="text-3xl mt-5 font-b mb-15 text-center text-sky-900">
             Artículos
           </h2>
-          <div className="max-w-6xl  b-red-400 ">
+          <div className="w-full    ">
             {!data ? (
-              <div className="flex flex-col justify-center items-center h-64 gap-10 mt-5 mb-10">
+              <div className="flex flex-col  justify-center items-center h-64 gap-10 mt-5 mb-10">
                 <p className="text-gray-500 text-center text-sm max-w-md">
                   🕰️ Render pensó que nadie vendría tan rápido... y ahora lo
                   agarramos en pantuflas. En breve se viste. 😅
@@ -98,7 +98,7 @@ export default function Index() {
               </div>
             ) : (
               <motion.div
-                className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-8"
+                className="grid grid-cols-1  sm:grid-cols-1 lg:grid-cols-3 gap-8 "
                 initial="hidden"
                 animate="visible"
                 variants={containerVariants}
